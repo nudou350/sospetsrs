@@ -2,5 +2,7 @@
 
 /* Importing Bootstrap SCSS file. */
 @import '../src/assets/bootstrap/theme.scss';
+@import '../src/assets/bootstrap/components.scss';
+@import '../src/assets/bootstrap/responsive.scss';
 @import '../src/assets/bootstrap/utils.scss';
 @import 'bootstrap/scss/bootstrap';
