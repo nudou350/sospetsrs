@@ -1,0 +1,34 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-body-primary mb-3 bg-primary px-3 z-1">
+	<div class="container-fluid">
+        <div class="d-flex gap-2 align-items-center">
+            <img src="../../../assets/icons/logo.png" class="img-fluid" alt="logo">
+            <a class="navbar-brand" [routerLink]="'/'">Arcanimal</a>
+        </div>
+
+
+		<!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
+		<button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
+
+		<!-- Step 2: Add the ngbCollapse directive to the element below. -->
+		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+			<ul class="navbar-nav gap-3">
+				<li class="nav-item active">
+					<!-- Step 4: Close the menu when a link is clicked. -->
+					<a class="nav-link" [routerLink]="''" routerLinkActive="active" (click)="isMenuCollapsed = true">Início</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="'/abrigos'" routerLinkActive="active" (click)="isMenuCollapsed = true">Abrigos</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" [routerLink]="'sobre-nos'" routerLinkActive="active" (click)="isMenuCollapsed = true">Sobre nós</a>
+				</li>
+                <li class="nav-item">
+					<a class="nav-link" [routerLink]="'contato'" routerLinkActive="active" (click)="isMenuCollapsed = true">Contato</a>
+				</li>
+			</ul>
+            <div class="d-flex justify-content-end flex-grow-1">
+                <span class="text-white">Fazer Login</span>
+            </div>
+		</div>
+	</div>
+</nav>
