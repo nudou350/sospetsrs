@@ -1,3 +1,10 @@
 <div class="container-fluid">
     <app-home-banner/>
+    <app-home-filters/>
+    <div class="d-flex justify-content-center flex-wrap gap-3 mt-3 align-items-center">
+        @for (item of [1,2,3,4,5,6,7,8]; track $index) {
+                <app-home-pet-card/>
+        }
+
+    </div>
 </div>
