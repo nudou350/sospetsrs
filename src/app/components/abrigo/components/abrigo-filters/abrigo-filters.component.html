@@ -1,0 +1,40 @@
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8"> <!-- Ajuste a largura da coluna conforme necessário -->
+            <div class="d-flex align-items-center justify-content-center gap-2">
+                <!-- Search bar -->
+                <div class="flex-grow-1">
+                    <form class="d-flex">
+                        <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                    </form>
+                </div>
+                
+                <!-- Dropdown for Localidade -->
+                <div ngbDropdown class="d-inline-block">
+                    <button type="button" class="form-control" id="dropdownLocalidade" ngbDropdownToggle>
+                        Localidade
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownLocalidade">
+                        <button ngbDropdownItem>Opção 1</button>
+                        <button ngbDropdownItem>Opção 2</button>
+                        <button ngbDropdownItem>Opção 3</button>
+                    </div>
+                </div>
+
+                <!-- Dropdown for Vagas -->
+                <div ngbDropdown class="d-inline-block ms-2">
+                    <button type="button" class="form-control" id="dropdownVagas" ngbDropdownToggle>
+                        Vagas
+                    </button>
+                    <div ngbDropdownMenu aria-labelledby="dropdownVagas">
+                        <button ngbDropdownItem>Opção 1</button>
+                        <button ngbDropdownItem>Opção 2</button>
+                        <button ngbDropdownItem>Opção 3</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
