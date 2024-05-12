@@ -18,32 +18,38 @@ export class HomeLinktreeComponent {
     {
       text: "Solicitar resgate",
       icon: 'rescue',
-      url: '/abrigos'
+      url: '/abrigos',
+      isExternal: false
     },
     {
       text: "Visualizar abrigos",
       icon: 'shelter',
-      url: 'https://www.petsos.com.br/'
+      url: 'https://www.petsos.com.br/',
+      isExternal: true
     },
     {
       text: "Quero ser um lar temporário",
       icon: 'temporary-home',
-      url: 'https://www.petsos.com.br/cadastro'
+      url: 'https://www.petsos.com.br/cadastro',
+      isExternal: true
     },
     {
       text: "Quero adotar",
       icon: 'paw',
-      url: 'https://www.petsos.com.br/cadastro'
+      url: 'https://www.petsos.com.br/cadastro',
+      isExternal: true
     },
     {
       text: "Cadastrar animal encontrado",
       icon: 'search',
-      url: 'https://www.petsos.com.br/'
+      url: 'https://www.petsos.com.br/',
+      isExternal: true
     },
     {
       text: "Quero doar",
       icon: 'donation',
-      url: '/'
+      url: '/',
+      isExternal: false
     },
 
   ]
