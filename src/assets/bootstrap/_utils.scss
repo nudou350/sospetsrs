@@ -1,7 +1,22 @@
-.active{
-    font-weight: bold;
+.active {
+  font-weight: bold;
 }
 
 .pointer {
-    cursor: pointer;
+  cursor: pointer;
+}
+
+.container-padding-x {
+  padding-left: 7rem !important;
+  padding-right: 7rem !important;
+
+  @media screen and (max-width: 1024px) {
+    padding-left: 4rem !important;
+    padding-right: 4rem !important;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
 }
