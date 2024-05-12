@@ -2,22 +2,5 @@
     <app-home-banner/>
 </div>
 <div class="container-fluid px-5">
-    <app-home-filters/>
-    <div class="d-flex justify-content-center flex-wrap gap-3 mt-3 align-items-center">
-        @for (item of [1,2,3,4]; track $index) {
-                <app-home-pet-card/>
-        }
-    </div>
-    <div class="row mt-3">
-        <div class="col-12 justify-content-center d-flex">
-            <ngb-pagination [collectionSize]="50" [(page)]="page" aria-label="Default pagination" />
-        </div>
-    </div>
-    @defer (on viewport) {
-        <app-home-bottom-banner/>
-    }
-    @placeholder {
-        <span>loading...</span>
-    }
-
+    <app-home-linktree/>
 </div>

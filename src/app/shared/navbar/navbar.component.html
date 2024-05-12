@@ -1,8 +1,7 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-body-primary bg-primary px-3 z-1">
+<nav class="navbar navbar-expand-lg navbar-dark bg-body-primary bg-white px-3 z-1 shadow-sm">
 	<div class="container-fluid">
         <div class="d-flex gap-2 align-items-center">
-            <img src="../../../assets/icons/logo.png" class="img-fluid" alt="logo">
-            <a class="navbar-brand" [routerLink]="'/'">Arcanimal</a>
+            <img [routerLink]="'/'" src="../../../assets/icons/logo.svg" class="img-fluid" alt="logo">
         </div>
 
 
@@ -10,24 +9,28 @@
 		<button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
 
 		<!-- Step 2: Add the ngbCollapse directive to the element below. -->
-		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse">
+		<div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ms-lg-5">
 			<ul class="navbar-nav gap-3">
 				<li class="nav-item active">
 					<!-- Step 4: Close the menu when a link is clicked. -->
-					<a class="nav-link" [routerLink]="''" routerLinkActive="active" (click)="isMenuCollapsed = true">Início</a>
+					<a class="nav-link text-primary" [routerLink]="''" routerLinkActive="active" (click)="isMenuCollapsed = true">Início</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" [routerLink]="'/abrigos'" routerLinkActive="active" (click)="isMenuCollapsed = true">Abrigos</a>
+					<a class="nav-link text-primary" [routerLink]="'/abrigos'" routerLinkActive="active" (click)="isMenuCollapsed = true">Abrigos</a>
 				</li>
-				<li class="nav-item">
+				<!-- <li class="nav-item">
 					<a class="nav-link" [routerLink]="'sobre-nos'" routerLinkActive="active" (click)="isMenuCollapsed = true">Sobre nós</a>
-				</li>
+				</li> -->
                 <li class="nav-item">
-					<a class="nav-link" [routerLink]="'contato'" routerLinkActive="active" (click)="isMenuCollapsed = true">Contato</a>
+					<a class="nav-link text-primary" [routerLink]="'contato'" routerLinkActive="active" (click)="isMenuCollapsed = true">Contatos</a>
 				</li>
 			</ul>
             <div class="d-flex justify-content-end flex-grow-1">
-                <span class="text-white">Fazer Login</span>
+				<div class="d-flex gap-2 align-items-center">
+					<span class="text-primary">Fazer Login</span>
+					<img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
+				</div>
+                
             </div>
 		</div>
 	</div>
