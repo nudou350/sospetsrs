@@ -1,3 +1,7 @@
-<app-navbar/>
-<router-outlet />
-<app-footer/>
+<div class="d-flex flex-column min-vh-100">
+    <app-navbar/>
+    <div class="container-app flex-grow-1">
+      <router-outlet />
+    </div>
+    <app-footer class="w-100"/>
+  </div>

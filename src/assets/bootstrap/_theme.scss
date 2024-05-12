@@ -1,11 +1,11 @@
 //Use theme colors to override current bootstrap colors and merge new ones
 $theme-colors: (
-    "primary" : #470002,
-    "secondary": #F6E7DF,
-    "success": #299485,
-    "danger": #C33A3E,
-    "info" : #263CCB,
-    "warning": #F7D200,
+    "primary" : #020080,
+    "secondary": #2897FF,
+    // "success": #299485,
+    // "danger": #C33A3E,
+    // "info" : #263CCB,
+    // "warning": #F7D200,
     "anyname-anything": #D4FFDD,
     "dark-1": #8F9098,
     "dark-2": #71727A,
@@ -17,6 +17,54 @@ $theme-colors: (
     "light-3": #E8E9F1,
     "light-4": #D4D6DD,
     "light-5": #C5C6CC,
-
-
+    "success-1": #E7F4E8,
+    "success-2": #3AC0A0,
+    "success-3": #298267,
+    "warning-1": #FFF4E4,
+    "warning-2": #FFB37C,
+    "warning-3": #E86339,
+    "error-1": #FFE2E5,
+    "error-2": #FF616D,
+    "error-3": #ED3241,
 );
+
+$font-family: 'Poppins', sans-serif !important;
+$neutral-color-80: var(--Neutral-Color-80, var(--Text-Medium, #242B33));
+$text-medium: var(--Text-Medium, #242B33);
+
+@mixin title-styles($font-size, $line-height, $font-weight, $color) {
+  font-family: $font-family;
+  font-size: $font-size;
+  font-style: normal;
+  font-weight: $font-weight;
+  line-height: $line-height;
+  color: $color;
+}
+
+$font-sizes: (
+  h1: 50px,
+  h2: 32px,
+  h3: 28px,
+  h4: 24px,
+  h5: 20px,
+  subtitle1: 18px,
+  subtitle2: 16px,
+  subtitle3: 14px,
+  subtitle4: 12px,
+  caption: 10px
+);
+
+$font-weights: (
+  regular: 400,
+  medium: 500,
+  bold: 700
+);
+
+@each $heading, $size in $font-sizes {
+  @each $weight-name, $weight in $font-weights {
+    $class-name: ".#{$heading}-#{$weight-name}";
+    #{$class-name} {
+      @include title-styles($size, map-get($font-sizes, $heading) * 2, $weight, if($weight-name == regular, $text-medium, $neutral-color-80));
+    }
+  }
+}

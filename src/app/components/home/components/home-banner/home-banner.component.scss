@@ -1,7 +1,10 @@
 :host {
   display: block;
 .dog{
-  margin-right: -1vw;
-  z-index: -1;
+  background-image: url('../../../../../assets/img/banner-img.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: right;
+
 }
 }
