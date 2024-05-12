@@ -4,7 +4,15 @@
   background-image: url('../../../../../assets/img/banner-img.png');
   background-size: contain;
   background-repeat: no-repeat;
-  background-position: right;
-
+  background-position: top right;
+}
+@media screen and (max-width: 768px){
+  .bottom-mobile{
+    padding-top: 10rem;
+    max-width: 50%;
+  }
+  .w-mobile{
+    width: 100%!important;
+  }
 }
 }
