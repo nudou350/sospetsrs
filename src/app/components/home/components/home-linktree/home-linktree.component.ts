@@ -42,7 +42,7 @@ export class HomeLinktreeComponent {
     {
       text: "Cadastrar animal encontrado",
       icon: 'search',
-      url: 'https://www.petsos.com.br/',
+      url: 'https://www.petsos.com.br/cadastro',
       isExternal: true
     },
     {
