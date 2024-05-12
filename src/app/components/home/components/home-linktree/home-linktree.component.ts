@@ -16,33 +16,33 @@ import { RouterLink } from '@angular/router';
 export class HomeLinktreeComponent {
   actions = [
     {
-      text: "Situação atual dos abrigos",
-      icon: 'shelter',
+      text: "Solicitar resgate",
+      icon: 'rescue',
       url: '/abrigos'
     },
     {
-      text: "Cadastre um animal perdido",
-      icon: 'lost-pet',
+      text: "Visualizar abrigos",
+      icon: 'shelter',
       url: 'https://www.petsos.com.br/'
     },
     {
-      text: "Cadastre um animal encontrado",
-      icon: 'found',
+      text: "Quero ser um lar temporário",
+      icon: 'temporary-home',
       url: 'https://www.petsos.com.br/cadastro'
     },
     {
-      text: "Peça um resgate",
-      icon: 'sos',
+      text: "Quero adotar",
+      icon: 'paw',
       url: 'https://www.petsos.com.br/cadastro'
     },
     {
-      text: "Veja os animais encontrados",
+      text: "Cadastrar animal encontrado",
       icon: 'search',
       url: 'https://www.petsos.com.br/'
     },
     {
-      text: "Quero adotar",
-      icon: 'temporary-home',
+      text: "Quero doar",
+      icon: 'donation',
       url: '/'
     },
 
