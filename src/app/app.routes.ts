@@ -16,5 +16,9 @@ export const routes: Routes = [
   {
     path: 'nova-senha',
     loadComponent: () => import('./components/password-recovery/password-recovery.component').then(m => m.PasswordRecoveryComponent)
+  },
+  {
+    path: 'abrigo',
+    loadComponent: () => import('./components/abrigo/abrigo.component').then(m => m.AbrigoComponent)
   }
 ];
