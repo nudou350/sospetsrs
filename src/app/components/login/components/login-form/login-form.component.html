@@ -1,0 +1,20 @@
+<form (ngSubmit)="onLogin(loginForm)" #loginForm="ngForm" class="row">
+  <div class="mb-3">
+      <label for="email" class="form-label">E-mail</label>
+      <input type="email" class="form-control" id="email" placeholder="voluntario@email.com" name="email" [(ngModel)]="email" required #emailInput="ngModel">
+      <div *ngIf="emailInput.invalid && emailInput.touched" class="text-danger">
+          O campo email é obrigatório.
+      </div>
+  </div>
+  <div class="mb-3">
+      <label for="password" class="form-label">Senha</label>
+      <input type="password" class="form-control" id="password" placeholder="*******" name="password" [(ngModel)]="password" required #passwordInput="ngModel">
+      <div *ngIf="passwordInput.invalid && passwordInput.touched" class="text-danger">
+          O campo senha é obrigatório.
+      </div>
+  </div>
+  <div class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center">
+    <button type="submit" class="col-4 btn btn-primary d-block mb-3" [disabled]="!loginForm.valid">Entrar</button>
+    <button type="button" class="btn col-4 btn-secondary d-block">Esqueci a senha</button>
+  </div>
+</form>
