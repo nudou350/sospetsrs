@@ -20,5 +20,9 @@ export const routes: Routes = [
   {
     path: 'abrigo',
     loadComponent: () => import('./components/abrigo/abrigo.component').then(m => m.AbrigoComponent)
+  },
+  {
+    path: 'criar-abrigo',
+    loadComponent: () => import('./components/home/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
   }
 ];

@@ -1,14 +1,24 @@
+@import './../../../../../assets/bootstrap/theme';
+
 :host {
   display: block;
   .hover:hover {
-    background-color: #020080;
+    background-color: map-get($theme-colors, 'primary');
     color: white;
     .vector-hover{
       filter: contrast(0.5) brightness(5);
     }
+    .card-text {
+      color: white !important;
+    }
+
   }
   .vector-width{
-    width: 3rem;
-    height: 3rem;
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .card {
+    border: 2px solid map-get($theme-colors, 'primary');
   }
 }

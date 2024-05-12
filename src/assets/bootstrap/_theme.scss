@@ -42,16 +42,16 @@ $text-medium: var(--Text-Medium, #242B33);
 }
 
 $font-sizes: (
-  h1: 50px,
-  h2: 32px,
-  h3: 28px,
-  h4: 24px,
-  h5: 20px,
-  subtitle1: 18px,
-  subtitle2: 16px,
-  subtitle3: 14px,
-  subtitle4: 12px,
-  caption: 10px
+  h1: 3.5rem,
+  h2: 2rem,
+  h3: 1.75rem,
+  h4: 1.5rem,
+  h5: 1.25rem,
+  subtitle1: 1.125rem,
+  subtitle2: 1rem,
+  subtitle3: 0.875rem,
+  subtitle4: 0.75rem,
+  caption: 0.625rem
 );
 
 $font-weights: (
@@ -64,7 +64,7 @@ $font-weights: (
   @each $weight-name, $weight in $font-weights {
     $class-name: ".#{$heading}-#{$weight-name}";
     #{$class-name} {
-      @include title-styles($size, map-get($font-sizes, $heading) * 2, $weight, if($weight-name == regular, $text-medium, $neutral-color-80));
+      @include title-styles($size, map-get($font-sizes, $heading) * 1.2, $weight, if($weight-name == regular, $text-medium, $neutral-color-80));
     }
   }
 }
