@@ -3,13 +3,7 @@
     <div class="d-flex gap-2 align-items-center">
       <img [routerLink]="'/'" src="../../../assets/icons/logo.svg" class="img-fluid" alt="logo">
     </div>
-
-
-    <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
-
-
-    <!-- Step 2: Add the ngbCollapse directive to the element below. -->
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ms-lg-5">
       <ul class="navbar-nav gap-3">
         <li class="nav-item active">
@@ -20,10 +14,10 @@
           <a class="nav-link text-primary" [routerLink]="'/abrigos'" routerLinkActive="active"
             (click)="isMenuCollapsed = true">Abrigos</a>
         </li>
-        <li class="nav-item">
+        <!-- <li class="nav-item">
           <a class="nav-link text-primary" [routerLink]="'contato'" routerLinkActive="active"
             (click)="isMenuCollapsed = true">Contatos</a>
-        </li>
+        </li> -->
       </ul>
       <div class="d-flex justify-content-end flex-grow-1">
         <a routerLink="login" class="d-flex gap-2 align-items-center pointer">
@@ -34,4 +28,3 @@
     </div>
   </nav>
 </header>
-

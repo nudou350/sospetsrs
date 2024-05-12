@@ -1,9 +1,11 @@
-<div class="container-fluid">
+<div class="container-fluid p-md-5">
     <app-abrigo-button/>
-</div>
-<div class="container-fluid px-5">
-    <app-abrigo-filters></app-abrigo-filters>
-</div>
-<div class="container-fluid">
-    <app-abrigo-card/>
+    <app-abrigo-filters/>
+    <div class="row mt-5">
+        @for (item of [1,2,3,4,5,6]; track $index) {
+            <div class="col-md-4 col-12 mb-4">
+                <app-abrigo-card/>
+            </div>
+        }
+    </div>
 </div>

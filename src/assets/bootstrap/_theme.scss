@@ -5,7 +5,7 @@ $theme-colors: (
     "success": #299485,
     "danger": #C33A3E,
     "info" : #263CCB,
-    "warning": #F7D200,
+    "warning": rgba(255, 165, 0, 0.30),
     "anyname-anything": #D4FFDD,
     "dark-1": #8F9098,
     "dark-2": #71727A,
@@ -17,6 +17,7 @@ $theme-colors: (
     "light-3": #E8E9F1,
     "light-4": #D4D6DD,
     "light-5": #C5C6CC,
+    "text-weak": #636B7E,
     "success-1": #E7F4E8,
     "success-2": #3AC0A0,
     "success-3": #298267,
@@ -26,6 +27,7 @@ $theme-colors: (
     "error-1": #FFE2E5,
     "error-2": #FF616D,
     "error-3": #ED3241,
+    
 );
 
 $font-family: 'Poppins', sans-serif !important;
