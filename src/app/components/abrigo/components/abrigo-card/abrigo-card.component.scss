@@ -1,12 +1,11 @@
 :host {
     display: block;
-  }
-  
-  @media screen and (max-width: 900px){
+      @media screen and (max-width: 900px){
     .bottom-mobile{
       max-width: 100%;
     }
     .w-mobile{
       width: 100%!important;
     }
+  }
   }

@@ -18,7 +18,7 @@ export const routes: Routes = [
     loadComponent: () => import('./components/password-recovery/password-recovery.component').then(m => m.PasswordRecoveryComponent)
   },
   {
-    path: 'abrigo',
+    path: 'abrigos',
     loadComponent: () => import('./components/abrigo/abrigo.component').then(m => m.AbrigoComponent)
   },
   {
