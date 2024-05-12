@@ -16,3 +16,13 @@
   }
 }
 }
+
+.banner-container  {
+  min-height: 90dvh;
+  max-height: 800px;
+
+  @media screen and (max-width: 768px){
+    min-height: 55dvh;
+
+  }
+}
