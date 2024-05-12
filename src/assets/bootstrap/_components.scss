@@ -8,7 +8,12 @@
     gap: 10px !important;
     flex-shrink: 0;
 }
-
+.btn:disabled{
+  background-color: #838DA4 !important;
+  border-color: #838DA4 !important;
+  color: #1F2024!important;
+  cursor: not-allowed !important;
+}
 .form-check-input {
     position: absolute !important;
     opacity: 1;

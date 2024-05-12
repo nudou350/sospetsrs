@@ -5,7 +5,8 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpService } from '../../../core/http/http.service';
 import { User } from '../models/user.model';
 import { LoginPayload } from '../dtos/login.dto';
-import { environment } from '../../../../environments/environment';
+import { environment } from '../../../../environments/environment.example';
+
 
 type AuthState = {
     user: User | null;
