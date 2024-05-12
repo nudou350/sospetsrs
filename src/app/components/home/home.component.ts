@@ -1,10 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { HomeBannerComponent } from './components/home-banner/home-banner.component';
-import { HomeFiltersComponent } from './components/home-filters/home-filters.component';
-import { HomePetCardComponent } from './components/home-pet-card/home-pet-card.component';
-import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
-import { HomeBottomBannerComponent } from './components/home-bottom-banner/home-bottom-banner.component';
+import { HomeLinktreeComponent } from './components/home-linktree/home-linktree.component';
 
 @Component({
   selector: 'app-home',
@@ -12,10 +9,8 @@ import { HomeBottomBannerComponent } from './components/home-bottom-banner/home-
   imports: [
     CommonModule,
     HomeBannerComponent,
-    HomeFiltersComponent,
-    HomePetCardComponent,
-    NgbPaginationModule,
-    HomeBottomBannerComponent
+    HomeLinktreeComponent
+
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',

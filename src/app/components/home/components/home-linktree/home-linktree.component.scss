@@ -1,0 +1,13 @@
+:host {
+  display: block;
+  .hover:hover {
+    background-color: #020080;
+    color: white;
+    .vector-hover{
+      filter: contrast(0.5) brightness(5);
+    }
+  }
+  .vector-width{
+    width: 3rem;
+  }
+}
