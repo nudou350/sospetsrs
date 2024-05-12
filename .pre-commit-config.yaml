@@ -1,0 +1,12 @@
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.5.0 # Versão mais recente do repositório
+    hooks:
+      - id: trailing-whitespace #remove espaços em branco desnecessários no final das linhas.
+        exclude: '.*\.json$'
+      - id: end-of-file-fixer #garante que o arquivo termina com uma linha em branco.
+        exclude: '.*\.json$'
+      - id: check-yaml #verifica se os arquivos YAML estão corretos.
+        exclude: '.*\.json$'
+      - id: check-added-large-files #previne a adição de arquivos grandes ao repositório.
+        exclude: '.*\.json$'

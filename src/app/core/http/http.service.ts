@@ -40,6 +40,7 @@ export class HttpService {
     );
   }
 
+  // TODO: Tratar erros específicos como 401 direcionar para login
   private handleError(error: any) {
     console.error('An error occurred:', error);
     return throwError(() => new Error(error.message || "Server error"));
