@@ -18,14 +18,14 @@ export class HomeLinktreeComponent {
     {
       text: "Solicitar resgate",
       icon: 'rescue',
-      url: '/abrigo',
-      isExternal: false
+      url: 'https://forms.gle/c77RYoqRWLXVti1QA',
+      isExternal: true
     },
     {
       text: "Visualizar abrigos",
       icon: 'shelter',
-      url: 'https://www.petsos.com.br/',
-      isExternal: true
+      url: '/abrigos',
+      isExternal: false
     },
     {
       text: "Quero ser um lar temporário",
