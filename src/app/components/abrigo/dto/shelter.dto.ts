@@ -9,7 +9,7 @@ export interface IShelterInterface{
     occupation: number;
     owner: string;
     needs: string[];
-    other_needs: string[];
+    other_needs: string;
     createdAt: Date;
     updatedAt: Date;
     updatedBy: number;
