@@ -1,7 +1,6 @@
 import type { HttpInterceptorFn } from '@angular/common/http';
 
 export const HttpRequestInterceptor: HttpInterceptorFn = (req, next) => {
-    debugger;
     if(typeof window === 'undefined') {
         return next(req);
     }
