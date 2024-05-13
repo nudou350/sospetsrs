@@ -7,8 +7,11 @@
     gap: 10px !important;
     flex-shrink: 0;
     font-size: 1.25rem !important;
-    max-width: 280px;
     width: 100%;
+
+    @media screen and (min-width: 768px) {
+      max-width: 280px;
+    }
 }
 .btn:disabled{
   background-color: #838DA4 !important;
