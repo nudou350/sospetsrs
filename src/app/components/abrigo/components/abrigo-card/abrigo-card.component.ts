@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, Input, input } from '@angular/core';
-import { IShelterInterface } from '../../dto/shelter.dto';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { IShelterInterface } from '../../dto/shelter.dto';
 
 @Component({
   selector: 'app-abrigo-card',
@@ -15,7 +15,7 @@ import { RouterLink } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AbrigoCardComponent {
-  @Input() shelter!: IShelterInterface;
+  shelter = input<IShelterInterface>()
 
   formatPhone(phone: string) {
     return phone.replace(/\D/g, '');

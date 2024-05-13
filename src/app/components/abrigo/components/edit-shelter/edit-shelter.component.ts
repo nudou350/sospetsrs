@@ -21,7 +21,6 @@ export class EditShelterComponent implements OnInit {
   needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
   selectedNeeds = signal<string[]>([])
   dataReady = signal<boolean>(false)
-
   #shelterService = inject(ShelterService)
   #activatedRoute = inject(ActivatedRoute)
   #fb = inject(FormBuilder)
@@ -29,7 +28,7 @@ export class EditShelterComponent implements OnInit {
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
 
   shelterForm = this.#fb.nonNullable.group({
-    location: ['',  Validators.required],
+    location: ['', Validators.required],
     address: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
@@ -49,46 +48,58 @@ export class EditShelterComponent implements OnInit {
 
 
   ngOnInit(): void {
-    this.#shelterService.getShelterById(this.shelterId).subscribe(shelter => {
-      this.shelterForm.patchValue(shelter);
-      this.shelterForm.controls.needs.setValue(shelter.needs);
-      this.selectedNeeds.set(shelter.needs);
+    //if we access from the abrigos page, we already have the shelter in the list, so no need to download the data
+    const currentShelter = this.#shelterService.shelters().find(shelter => shelter.id === this.shelterId);
+    if (currentShelter) {
+      this.shelterForm.patchValue(currentShelter);
+      this.shelterForm.controls.needs.setValue(currentShelter.needs);
+      this.selectedNeeds.set(currentShelter.needs);
       this.dataReady.set(true);
-    });
+    }
+    //if we access from the edit page directly, we need to download the data
+    else {
+      this.#shelterService.getShelterById(this.shelterId).subscribe(shelter => {
+        this.shelterForm.patchValue(shelter);
+        this.shelterForm.controls.needs.setValue(shelter.needs);
+        this.selectedNeeds.set(shelter.needs);
+        this.dataReady.set(true);
+      });
+    }
+
   }
 
-  updateList(item: string){
+  updateList(item: string) {
     console.log(item)
-    if(this.selectedNeeds().includes(item)){
+    if (this.selectedNeeds().includes(item)) {
       const newList = this.selectedNeeds().filter(need => need !== item)
       this.selectedNeeds.set(newList)
       this.shelterForm.controls.needs.setValue(newList);
-    }else{
+    } else {
       this.selectedNeeds.update(need => [...need, item])
     }
   }
 
-  updateShelter() : void {
+  updateShelter(): void {
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
     shelter.needs = this.selectedNeeds();
     this.#shelterService.updateShelter(shelterId, shelter).subscribe({
-      next:()=>{
-        this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+      next: () => {
+        this.toastService.show({ template: this.successTpl, classname: "text-white bg-success p-2" });
         this.#router.navigateByUrl('/abrigos')
-      },error:()=>{
-        this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
+      }, error: (err) => {
+        this.toastService.show({ template: this.errorTpl, classname: "text-white bg-danger p-2" });
       }
 
     });
   }
-  deleteShelter(){
+  deleteShelter() {
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     this.#shelterService.deleteShelter(shelterId).subscribe({
-      next:  ()=> {
-        this.toastService.show({ template: this.deleteTpl, classname:"text-white bg-success p-2" });
+      next: () => {
+        this.toastService.show({ template: this.deleteTpl, classname: "text-white bg-success p-2" });
         this.#router.navigateByUrl('/abrigos')
       }
     })
   }
- }
+}

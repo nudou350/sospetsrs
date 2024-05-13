@@ -1,9 +1,9 @@
 <div class="container-fluid container-padding-x py-md-5">
     <app-abrigo-button />
-    <ng-container *ngIf="shelters$|async as shelters">
-        <app-abrigo-filters [shelters]="shelters"/>
+    <ng-container *ngIf="shelters()">
+        <app-abrigo-filters [shelters]="shelters()"/>
         <div id="topView" class="row mt-5 d-flex align-items-end">
-            @for (shelter of shelters | slice: (page-1) * pageSize : page * pageSize; track $index) {
+            @for (shelter of shelters() | slice: (page-1) * pageSize : page * pageSize; track $index) {
             <div class="col-md-4 col-12 mb-4 ">
                 <app-abrigo-card [shelter]="shelter" />
             </div>

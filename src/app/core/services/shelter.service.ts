@@ -4,6 +4,7 @@ import { Observable, map, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { IShelterInterface } from '../../components/abrigo/dto/shelter.dto';
 import { HttpService } from '../http/http.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop'
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +14,10 @@ export class ShelterService {
   //create a signal to store the shelters so we dont have to keep calling API later
   #shelters = signal<IShelterInterface[]>([]);
   shelters = this.#shelters.asReadonly()
+
+  constructor(){
+    this.getShelters().pipe(takeUntilDestroyed()).subscribe()
+  }
 
   getShelters(): Observable<IShelterInterface[]> {
     return this.#http.get<{ data: IShelterInterface[] }>(`${environment.apiUrl}/shelters`).pipe(
@@ -26,8 +31,16 @@ export class ShelterService {
   }
 
   updateShelter(id: number, shelter: IShelterInterface): Observable<IShelterInterface> {
-    return this.#http.put<IShelterInterface>(`${environment.apiUrl}/shelters/${id}`, shelter).pipe(
-      map(res => res));
+    const shelterWithoutId = { ...shelter }
+    delete shelterWithoutId.id
+    return this.#http.put<IShelterInterface>(`${environment.apiUrl}/shelters/${id}`, shelterWithoutId).pipe(
+      map(res => res),
+    tap(()=> {
+      const shelters = this.#shelters()
+      const index = shelters.findIndex(s => s.id === id)
+      shelters[index] = shelter
+      this.#shelters.set(shelters)
+    }))
   }
 
   createShelter(shelter: Partial<IShelterInterface>): Observable<IShelterInterface> {
@@ -35,6 +48,13 @@ export class ShelterService {
       map(res => res));
   }
   deleteShelter(id: number) {
-    return this.#http.delete(`${environment.apiUrl}/shelters/${id}`);
+    return this.#http.delete(`${environment.apiUrl}/shelters/${id}`).pipe(
+      tap(()=> {
+        const shelters = this.#shelters()
+        const index = shelters.findIndex(s => s.id === id)
+        shelters.splice(index, 1)
+        this.#shelters.set(shelters)
+      })
+    );
   }
 }
