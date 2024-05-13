@@ -39,7 +39,7 @@ export class LoginFormComponent {
   onRequestResetPassword() {
     //TODO: Melhorar fluxo, adicionar input de email na tela de recuperação talvez
     if (!this.loginForm.get('email')?.valid) {
-      alert("Nessecário preencher o e-mail para recuperar a senha!");
+      alert("Necessário preencher o e-mail para recuperar a senha!");
       return;
     }
 
