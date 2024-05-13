@@ -1,7 +1,7 @@
 <div class="container-fluid p-md-5">
     <app-abrigo-button/>
     <app-abrigo-filters/>
-    <div class="row mt-5">
+    <div *ngIf="shelters$|async as shelters" class="row mt-5">
         @for (item of [1,2,3,4,5,6]; track $index) {
             <div class="col-md-4 col-12 mb-4">
                 <app-abrigo-card/>
