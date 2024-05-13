@@ -23,6 +23,6 @@ export const routes: Routes = [
   },
   {
     path: 'criar-abrigo',
-    loadComponent: () => import('./components/home/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
+    loadComponent: () => import('./components/abrigo/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
   }
 ];
