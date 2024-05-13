@@ -2,9 +2,9 @@ import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { AbrigoButtonComponent } from './components/abrigo-button/abrigo-button.component';
 import { AbrigoCardComponent } from './components/abrigo-card/abrigo-card.component';
 import { AbrigoFiltersComponent } from './components/abrigo-filters/abrigo-filters.component';
-import { ShelterService } from '../../services/shelter.service';
 import { CommonModule } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+import { ShelterService } from '../../core/services/shelter.service';
 
 @Component({
   selector: 'app-abrigo',

@@ -1,8 +1,9 @@
 import { Injectable, inject } from '@angular/core';
-import { HttpService } from '../core/http/http.service';
-import { environment } from '../../environments/environment';
-import { IShelterInterface } from '../components/abrigo/dto/shelter.dto';
+
 import { Observable, map } from 'rxjs';
+import { environment } from '../../../environments/environment.prod.example';
+import { IShelterInterface } from '../../components/abrigo/dto/shelter.dto';
+import { HttpService } from '../http/http.service';
 
 @Injectable({
   providedIn: 'root'

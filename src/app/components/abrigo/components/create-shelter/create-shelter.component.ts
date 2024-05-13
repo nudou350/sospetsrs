@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ShelterService } from '../../../../services/shelter.service';
 import { RouterLink } from '@angular/router';
+import { ShelterService } from '../../../../core/services/shelter.service';
 
 @Component({
   selector: 'app-create-shelter',

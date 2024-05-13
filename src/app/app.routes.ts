@@ -1,4 +1,5 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './core/guards/auth.guard';
 
 export const routes: Routes = [
   {
@@ -23,10 +24,12 @@ export const routes: Routes = [
   },
   {
     path: 'cadastrar-abrigo',
-    loadComponent: () => import('./components/abrigo/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
+    loadComponent: () => import('./components/abrigo/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent),
+    canActivate: [authGuard]
   },
   {
     path: 'editar-abrigo/:id',
-    loadComponent: () => import('./components/abrigo/components/edit-shelter/edit-shelter.component').then(m => m.EditShelterComponent)
+    loadComponent: () => import('./components/abrigo/components/edit-shelter/edit-shelter.component').then(m => m.EditShelterComponent),
+    canActivate: [authGuard]
   }
 ];
