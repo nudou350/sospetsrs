@@ -1,8 +1,8 @@
 <div class="row mt-5">
-    <div class="col-6">
+    <div [class]="canEdit() ? 'col-6' : 'col-12'">
         <h1>Abrigos cadastrados</h1>
     </div>
-    <div class="col-6 d-flex justify-content-center flex-shrink-1">
+    <div *ngIf="canEdit()" class="col-6 d-flex justify-content-center flex-shrink-1">
         <button routerLink="/cadastrar-abrigo" class="btn btn-primary w-mobile">Cadastrar abrigo</button>
     </div>
 </div>

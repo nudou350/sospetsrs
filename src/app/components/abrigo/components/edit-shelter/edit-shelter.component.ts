@@ -1,9 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, computed, effect, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { ToastService } from '../../../../core/services/toast.service';
+import { AuthService } from '../../../../core/services/auth.service';
 
 @Component({
   selector: 'app-edit-shelter',
@@ -18,13 +19,15 @@ import { ToastService } from '../../../../core/services/toast.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditShelterComponent implements OnInit {
-  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
-  selectedNeeds = signal<string[]>([])
-  dataReady = signal<boolean>(false)
   #shelterService = inject(ShelterService)
   #activatedRoute = inject(ActivatedRoute)
   #fb = inject(FormBuilder)
   #router = inject(Router)
+  user = inject(AuthService).user
+  canEdit = computed(()=> this.user().role == 'admin' || this.user().role == 'volunteer')
+  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
+  selectedNeeds = signal<string[]>([])
+  dataReady = signal<boolean>(false)
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
 
   shelterForm = this.#fb.nonNullable.group({
@@ -46,7 +49,11 @@ export class EditShelterComponent implements OnInit {
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
   @ViewChild('deleteTpl') deleteTpl!: TemplateRef<any>;
 
-
+constructor(){
+  effect(()=> {
+    return (this.user().role!== 'admin' && this.user().role!=='volunteer') ?  this.shelterForm.disable(): this.shelterForm.enable()
+  })
+}
   ngOnInit(): void {
     //if we access from the abrigos page, we already have the shelter in the list, so no need to download the data
     const currentShelter = this.#shelterService.shelters().find(shelter => shelter.id === this.shelterId);
@@ -65,7 +72,6 @@ export class EditShelterComponent implements OnInit {
         this.dataReady.set(true);
       });
     }
-
   }
 
   updateList(item: string) {
