@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../services/shelter.service';
 import { IShelterInterface } from '../../dto/shelter.dto';
 
@@ -24,7 +24,7 @@ export class EditShelterComponent implements OnInit {
   #shelterService = inject(ShelterService)
   #activatedRoute = inject(ActivatedRoute)
   #fb = inject(FormBuilder)
-
+  #router = inject(Router)
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
 
   shelterForm = this.#fb.nonNullable.group({
@@ -67,6 +67,7 @@ export class EditShelterComponent implements OnInit {
     shelter.needs = this.selectedNeeds();
     this.#shelterService.updateShelter(shelterId, shelter).subscribe(() => {
       alert('Abrigo atualizado com sucesso!');
+      this.#router.navigateByUrl('/abrigos')
     });
   }
  }
