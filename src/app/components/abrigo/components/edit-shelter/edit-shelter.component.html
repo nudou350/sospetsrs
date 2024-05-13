@@ -1,15 +1,18 @@
 @if (dataReady()) {
     <div class="container-fluid p-lg-5" [formGroup]="shelterForm">
-        <div class="row">
-            <div class="col-12 text-start">
-                <h3>Editar abrigo</h3>
-                <p>Você poderá editar o nome, as informações e as necessidades do abrigo.</p>
+        @if (canEdit()) {
+            <div class="row">
+                <div class="col-12 text-start">
+                    <h3>Editar abrigo</h3>
+                    <p>Você poderá editar o nome, as informações e as necessidades do abrigo.</p>
+                </div>
             </div>
-        </div>
+        }
+
         <div class="row mt-5">
             <div class="col-md-5 col-12">
                 <label for="name" class="form-label">Nome do abrigo</label>
-                <input type="text" class="form-control" id="name" formControlName="name" placeholder="Abrigo A">
+                <input [disabled]="true" type="text" class="form-control" id="name" formControlName="name" placeholder="Abrigo A">
             </div>
             <div class="col-md-2 col-6 mt-md-0 mt-3">
                 <label for="capacity" class="form-label">Capacidade do abrigo</label>
@@ -52,7 +55,7 @@
             <div class="d-flex flex-column align-items-start mt-3 gap-3">
                 @for (item of needs; track $index) {
                 <div class="form-check d-flex align-items-center">
-                    <input class="form-check-input" type="checkbox" [value]="item" [checked]="shelterForm.controls.needs.value.includes(item)" (change)="updateList(item)" [id]="item">
+                    <input class="form-check-input" type="checkbox" [disabled]="!canEdit()" [value]="item" [checked]="shelterForm.controls.needs.value.includes(item)" (change)="updateList(item)" [id]="item">
                     <label class="form-check-label" [for]="item">
                         {{item | titlecase}}
                     </label>
@@ -61,13 +64,14 @@
                 <textarea type="text" class="form-control w-auto" id="other_needs" formControlName="other_needs" placeholder="Outros"></textarea>
             </div>
         </div>
-        <div class="row mt-5">
-            <div class="d-flex flex-md-row flex-column justify-content-center gap-3">
-                <button class="btn btn-outline-primary fw-medium" [routerLink]="['/abrigos']" routerLinkActive="router-link-active" >Voltar</button>
-                <button class="btn btn-primary fw-medium" (click)="updateShelter()">Salvar alterações</button>
-                <button class="btn btn-danger fw-medium" (click)="deleteShelter()">Apagar abrigo</button>
+
+            <div class="row mt-5">
+                <div class="d-flex flex-md-row flex-column justify-content-center gap-3">
+                    <button class="btn btn-outline-primary fw-medium" [routerLink]="['/abrigos']" routerLinkActive="router-link-active" >Voltar</button>
+                    <button *ngIf="canEdit()" class="btn btn-primary fw-medium" (click)="updateShelter()">Salvar alterações</button>
+                    <button *ngIf="canEdit()" class="btn btn-danger fw-medium" (click)="deleteShelter()">Apagar abrigo</button>
+                </div>
             </div>
-        </div>
     </div>
 }
 @else {

@@ -15,7 +15,7 @@ import { ToastService } from './core/services/toast.service';
   styleUrl: './app.component.scss'
 })
 export class AppComponent {
-  title = 'sospetsrs';
+  title = 'Arcanimal';
   loading = inject(LoadingService).loading
 
 }
