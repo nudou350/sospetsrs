@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../core/services/auth.service';
+import { ToastService } from '../../core/services/toast.service';
 
 @Component({
   selector: 'app-footer',
@@ -14,13 +15,18 @@ import { AuthService } from '../../core/services/auth.service';
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent { 
+export class FooterComponent {
   #authService = inject(AuthService)
   currentYear: number = new Date().getFullYear()
 
   loggedIn = this.#authService.loggedIn
 
+  toastService = inject(ToastService)
+
+  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
+
   logout(){
+    this.toastService.show({template: this.successTpl, classname:"bg-success text-white p-2"})
     this.#authService.logout()
   }
 }
