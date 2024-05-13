@@ -1,25 +1,29 @@
 <div class="card p-3 shadow">
     <div class="card-body">
         <div class="d-flex flex-column gap-1">
-            <span class="fw-bold">Abrigo A</span>
-            <div class="d-flex gap-2 align-items-center">
-                <span class="fw-light text-dark-1 mt-1">Rua: XXXXXXXXXXXXX</span>
-            </div>
+            <span class="fw-bold">{{shelter()?.name}}</span>
+            @if (shelter()?.address?.length) {
+                <div class="d-flex gap-2 align-items-center">
+                    <span class="fw-light text-dark-1 mt-1">{{shelter()?.address ?? ''}}</span>
+                </div>
+            }
             <div class="d-flex gap-2 mt-1">
-                <p class="text-bg-success-1 p-1 rounded px-2 fw-medium" style="color: #3B3F5C;">1 Vaga disponível</p>
+                <p 
+                [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-danger p-1 rounded px-2 fw-medium'" 
+                style="color: #3B3F5C;">
+                {{shelter()!.capacity - shelter()!.occupation}} Vagas disponíveis
+            </p>
             </div>
             <div class="d-flex gap-2 mt-3 flex-wrap">
                 @for (need of shelter()?.needs; track $index) {
-                    <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{need}}</span>
+                    <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{need|titlecase}}</span>
                 }
-                @if(shelter()?.other_needs){
+                @if(shelter()?.other_needs!.length>0){
                     <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{shelter()?.other_needs}}</span>
                 }
-
-
             </div>
             <div class="d-flex flex-column align-items-center mt-2 gap-2">
-                <a class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">Editar abrigo</a>
+                <a routerLink="/editar-abrigo" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">Editar abrigo</a>
                 <a class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
             </div>
         </div>
