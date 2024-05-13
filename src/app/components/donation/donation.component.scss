@@ -1,0 +1,25 @@
+@import './../../../assets/bootstrap/theme';
+
+.logo-img {
+  height: 10rem;
+  width: auto;
+}
+
+.donation-img {
+  height: 20rem;
+  width: auto;
+}
+
+.donation-icon {
+  height: 1.5rem;
+  width: auto;
+}
+
+.container-box {
+  margin-top: 4rem;
+}
+
+.line {
+  height: 2px;
+  background-color:  map-get($theme-colors, 'primary');
+}
