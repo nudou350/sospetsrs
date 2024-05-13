@@ -14,7 +14,7 @@
                 {{shelter.capacity - shelter.occupation}} Vagas disponíveis
             </p>
             </div>
-            <div class="d-flex gap-2 mt-3 flex-wrap">
+            <div class="d-flex gap-2 mt-4 flex-wrap">
                 @for (need of shelter.needs; track $index) {
                     <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{need|titlecase}}</span>
                 }
@@ -22,7 +22,7 @@
                     <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{shelter.other_needs}}</span>
                 }
             </div>
-            <div class="d-flex flex-column align-items-center mt-2 gap-2">
+            <div class="d-flex flex-column align-items-center mt-3 gap-2">
                 <a [routerLink]="'/editar-abrigo/'+shelter.id" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">Editar abrigo</a>
                 <a [href]="'https://wa.me/'+formatPhone(shelter.phone)" target="_blank" class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
             </div>

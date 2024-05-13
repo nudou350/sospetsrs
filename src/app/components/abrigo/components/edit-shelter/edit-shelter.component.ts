@@ -20,6 +20,7 @@ import { IShelterInterface } from '../../dto/shelter.dto';
 export class EditShelterComponent implements OnInit {
   needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
   selectedNeeds = signal<string[]>([])
+  dataReady = signal<boolean>(false)
   
   #shelterService = inject(ShelterService)
   #activatedRoute = inject(ActivatedRoute)
@@ -46,6 +47,7 @@ export class EditShelterComponent implements OnInit {
       this.shelterForm.patchValue(shelter);
       this.shelterForm.controls.needs.setValue(shelter.needs);
       this.selectedNeeds.set(shelter.needs);
+      this.dataReady.set(true);
     });
   }
 
@@ -63,7 +65,6 @@ export class EditShelterComponent implements OnInit {
   updateShelter() : void {
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
-    debugger;
     shelter.needs = this.selectedNeeds();
     this.#shelterService.updateShelter(shelterId, shelter).subscribe(() => {
       alert('Abrigo atualizado com sucesso!');

@@ -22,8 +22,12 @@ import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 })
 export class AbrigoComponent {
   page = 1
-  pageSize = 3
+  pageSize = 6
   #shelterService = inject(ShelterService)
   shelters$ = this.#shelterService.getShelters()
+  scrollTop() {
+    const element = document.getElementById('topView');
+    if (element) element.scrollIntoView({ behavior: 'smooth' });
+  }
 }
 
