@@ -2,9 +2,9 @@
     <app-abrigo-button/>
     <app-abrigo-filters/>
     <div *ngIf="shelters$|async as shelters" class="row mt-5">
-        @for (item of [1,2,3,4,5,6]; track $index) {
+        @for (shelter of shelters; track $index) {
             <div class="col-md-4 col-12 mb-4">
-                <app-abrigo-card/>
+                <app-abrigo-card [shelter]="shelter"/>
             </div>
         }
     </div>

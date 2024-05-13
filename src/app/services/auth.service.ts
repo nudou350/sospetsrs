@@ -1,4 +1,4 @@
-import { Injectable, inject, signal } from '@angular/core';
+import { Injectable, afterNextRender, inject, signal } from '@angular/core';
 import { HttpService } from '../core/http/http.service';
 import { ILogin } from '../components/login/dtos/login.dto';
 import { environment } from '../../environments/environment';
@@ -16,6 +16,15 @@ export class AuthService {
   #loggedIn = signal(false)
   loggedIn = this.#loggedIn.asReadonly()
 
+  constructor(){
+    afterNextRender(()=> {
+      if(typeof window !== 'undefined' && this.getFromStorage('accessToken') != null){
+        this.#loggedIn.set(true)
+      }
+    })
+
+  }
+
   login(body: ILogin){
     return this.#http.post<{access_token:string}>(`${environment.apiUrl}/auth/login`, body).pipe(
       tap((res)=> {
@@ -24,6 +33,11 @@ export class AuthService {
         this.#route.navigateByUrl('/abrigos')
       })
     )
+  }
+  logout(){
+    this.#loggedIn.set(false)
+    this.removeFromStorage('accessToken')
+    this.#route.navigateByUrl('/login')
   }
 
   private getFromStorage(key: string): string | null {

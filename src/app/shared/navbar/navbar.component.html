@@ -20,13 +20,21 @@
         </li> -->
       </ul>
 
-      @if (showLoginButton()) {
+      @if (!loggedIn()) {
       <div class="d-flex justify-content-end flex-grow-1">
         <a routerLink="login" class="d-flex gap-2 align-items-center pointer">
           <p class="text-primary subtitle2-medium">Fazer Login</p>
           <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
         </a>
       </div>
+      }
+      @else {
+        <div class="d-flex justify-content-end flex-grow-1">
+          <a (click)="logout()" class="d-flex gap-2 align-items-center pointer">
+            <p class="text-primary subtitle2-medium">Fazer logout</p>
+            <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
+          </a>
+        </div>
       }
 
     </div>
