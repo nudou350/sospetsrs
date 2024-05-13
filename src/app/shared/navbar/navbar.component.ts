@@ -11,7 +11,7 @@ import { AuthService } from '../../services/auth.service';
     CommonModule,
     NgbCollapseModule,
     RouterLink,
-    RouterLinkActive
+    RouterLinkActive,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',

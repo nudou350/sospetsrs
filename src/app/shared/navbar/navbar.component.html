@@ -1,18 +1,17 @@
 <header class="navbar container-padding-x navbar-expand-lg navbar-dark bg-body-primary bg-white py-4 z-1 shadow-sm">
   <nav class="container-fluid">
     <div class="d-flex gap-2 align-items-center">
-      <img [routerLink]="'/'" src="../../../assets/icons/logo.svg" class="img-fluid" alt="logo">
+      <img [routerLink]="'/'" src="../../../assets/icons/logo.svg" class="img-fluid pointer" alt="logo">
     </div>
     <button class="navbar-toggler" type="button" (click)="isMenuCollapsed = !isMenuCollapsed">&#9776;</button>
-    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ms-lg-5">
+    <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ms-lg-5 mt-lg-0 mt-3">
       <ul class="navbar-nav gap-3">
-        <li class="nav-item active">
-          <a class="nav-link text-primary pointer" [routerLink]="'/'" routerLinkActive="active"
-            (click)="isMenuCollapsed = true">Início</a>
+        <li class="nav-item" routerLinkActive="active" [routerLink]="'/'" routerLinkActive="active"
+          [routerLinkActiveOptions]="{exact: true}">
+          <a class="nav-link text-primary pointer" (click)="isMenuCollapsed = true">Início</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link text-primary pointer" [routerLink]="'/abrigos'" routerLinkActive="active"
-            (click)="isMenuCollapsed = true">Abrigos</a>
+        <li class="nav-item" routerLink="/abrigos" [routerLinkActiveOptions]="{exact: true}" routerLinkActive="active">
+          <a class="nav-link text-primary pointer" (click)="isMenuCollapsed = true">Abrigos</a>
         </li>
         <!-- <li class="nav-item">
           <a class="nav-link text-primary" [routerLink]="'contato'" routerLinkActive="active"
@@ -29,12 +28,12 @@
       </div>
       }
       @else {
-        <div class="d-flex justify-content-end flex-grow-1">
-          <a (click)="logout()" class="d-flex gap-2 align-items-center pointer">
-            <p class="text-primary subtitle2-medium">Sair</p>
-            <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
-          </a>
-        </div>
+      <div class="d-flex justify-content-end flex-grow-1">
+        <a (click)="logout()" class="d-flex gap-2 align-items-center pointer">
+          <p class="text-primary subtitle2-medium">Sair</p>
+          <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
+        </a>
+      </div>
       }
 
     </div>

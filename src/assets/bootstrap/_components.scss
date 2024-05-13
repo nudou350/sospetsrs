@@ -1,6 +1,5 @@
 .btn{
     display: flex !important;
-    min-width: 312px !important;
     min-height: 48px !important;
     padding: 12px 24px !important;
     justify-content: center !important;
@@ -14,6 +13,9 @@
   border-color: #838DA4 !important;
   color: #1F2024!important;
   cursor: not-allowed !important;
+}
+.navbar-toggler{
+  color: black!important;
 }
 .form-check-input {
     position: absolute !important;
