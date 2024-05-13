@@ -7,13 +7,24 @@
 <div class="row">
   @for (item of actions; track $index) {
   <div class="col-lg-6 col-12 mt-4">
-    <div class="card hover pointer">
-      <div class="card-body p-5 d-flex justify-content-between align-items-center">
-        <span class="fs-5 h4-regular card-text">{{item.text}}</span>
-        <img [routerLink]="item.url" [src]="'../../../../../../../assets/icons/' + item.icon + '.svg'" [alt]="item.icon"
-          class="vector-width vector-hover">
+    @if (item.isExternal) {
+      <a class="card hover pointer" href="{{item.url}}" target="_blank">
+        <div class="card-body p-5 d-flex justify-content-between align-items-center">
+          <span class="fs-5 h4-regular card-text">{{item.text}}</span>
+          <img [src]="'../../../../../../../assets/icons/' + item.icon + '.svg'" [alt]="item.icon"
+            class="vector-width vector-hover">
+        </div>
+      </a>
+    }
+    @else {
+      <div class="card hover pointer" [routerLink]="item.url">
+        <div class="card-body p-5 d-flex justify-content-between align-items-center">
+          <span class="fs-5 h4-regular card-text">{{item.text}}</span>
+          <img [src]="'../../../../../../../assets/icons/' + item.icon + '.svg'" [alt]="item.icon"
+            class="vector-width vector-hover">
+        </div>
       </div>
-    </div>
+      }
   </div>
   }
 </div>

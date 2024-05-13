@@ -19,12 +19,16 @@
             (click)="isMenuCollapsed = true">Contatos</a>
         </li> -->
       </ul>
+
+      @if (showLoginButton()) {
       <div class="d-flex justify-content-end flex-grow-1">
         <a routerLink="login" class="d-flex gap-2 align-items-center pointer">
           <p class="text-primary subtitle2-medium">Fazer Login</p>
           <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
         </a>
       </div>
+      }
+
     </div>
   </nav>
 </header>

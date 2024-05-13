@@ -1,12 +1,13 @@
 .btn{
     display: flex !important;
-    width: 312px !important;
-    height: 48px !important;
-    padding: 16px 24px !important;
+    min-width: 312px !important;
+    min-height: 48px !important;
+    padding: 12px 24px !important;
     justify-content: center !important;
     align-items: center !important;
     gap: 10px !important;
     flex-shrink: 0;
+    font-size: 1.25rem !important;
 }
 .btn:disabled{
   background-color: #838DA4 !important;
@@ -19,14 +20,14 @@
     opacity: 1;
     width: 20px !important;
     height: 20px !important;
-    border-radius: 50% !important; 
+    border-radius: 50% !important;
   }
-  
+
   .form-check-input:checked + .form-check-label::before {
     background-color: #5DADFF;
     border-color: #5DADFF;
   }
-  
+
   .form-check-input:checked + .form-check-label::after {
     content: '\2713';
     position: absolute;
@@ -41,5 +42,9 @@
     padding-left: 10px;
   }
   .form-label{
-    font-weight: bold!important;
+    font-weight: 600 !important
+  }
+
+  .form-control {
+    padding: 1rem 1.25rem !important;
   }
