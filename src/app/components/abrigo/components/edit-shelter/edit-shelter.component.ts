@@ -2,8 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { ShelterService } from '../../../../services/shelter.service';
-import { IShelterInterface } from '../../dto/shelter.dto';
+import { ShelterService } from '../../../../core/services/shelter.service';
 
 @Component({
   selector: 'app-edit-shelter',

@@ -2,7 +2,7 @@
     <div class="card-body">
         <div class="d-flex flex-column gap-1">
             <span class="fw-bold">{{shelter.name}}</span>
-            @if (shelter.address) {
+            @if (shelter?.address) {
                 <div class="d-flex gap-2 align-items-center">
                     <span class="fw-light text-dark-1 mt-1">{{shelter.address}}</span>
                 </div>
