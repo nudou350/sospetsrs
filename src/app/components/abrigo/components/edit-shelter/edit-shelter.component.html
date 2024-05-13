@@ -1,42 +1,42 @@
-<div class="container-fluid p-lg-5">
+<div class="container-fluid p-lg-5" [formGroup]="shelterForm">
     <div class="row">
         <div class="col-12 text-start">
-            <h3>Adicionar abrigo</h3>
-            <p>Você poderá adicionar um nome, as informações e as necessidades do abrigo.</p>
+            <h3>Editar abrigo</h3>
+            <p>Você poderá editar o nome, as informações e as necessidades do abrigo.</p>
         </div>
     </div>
     <div class="row mt-5">
         <div class="col-md-8 col-12">
-            <label for="exampleFormControlInput1" class="form-label">Nome do abrigo</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Abrigo A">
+            <label for="name" class="form-label">Nome do abrigo</label>
+            <input type="text" class="form-control" id="name" formControlName="name" placeholder="Abrigo A">
         </div>
         <div class="col-md-2 col-6 mt-md-0 mt-3">
-            <label for="exampleFormControlInput1" class="form-label">Capacidade do abrigo</label>
-            <input type="number" min="0" class="form-control" id="exampleFormControlInput1"
+            <label for="capacity" class="form-label">Capacidade do abrigo</label>
+            <input type="number" min="0" class="form-control" formControlName="capacity" id="capacity"
                 placeholder="Capacidade do abrigo">
         </div>
         <div class="col-md-2 col-6 mt-md-0 mt-3">
-            <label for="exampleFormControlInput1" class="form-label">Vagas disponíveis</label>
-            <input type="number" min="0" class="form-control" id="exampleFormControlInput1"
+            <label for="occupation" class="form-label">Animais alocados</label>
+            <input type="number" min="0" class="form-control" formControlName="occupation" id="occupation"
                 placeholder="Vagas disponíveis">
         </div>
     </div>
     <div class="row mt-3">
         <div class="col-md-3 col-12">
-            <label for="exampleFormControlInput1" class="form-label">Localização do abrigo</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Capacidade do abrigo">
+            <label for="location" class="form-label">Localização do abrigo</label>
+            <input type="text" class="form-control" id="location" formControlName="location" placeholder="Capacidade do abrigo">
         </div>
         <div class="col-md-3 col-12 mt-md-0 mt-3">
-            <label for="exampleFormControlInput1" class="form-label">Responsável pelo abrigo</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Responsável pelo abrigo">
+            <label for="owner" class="form-label">Responsável pelo abrigo</label>
+            <input type="text" class="form-control" id="owner" formControlName="owner" placeholder="Responsável pelo abrigo">
         </div>
         <div class="col-md-3 col-12 mt-md-0 mt-3">
-            <label for="exampleFormControlInput1" class="form-label">Whatsapp</label>
-            <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="zip zop">
+            <label for="phone" class="form-label">Whatsapp</label>
+            <input type="text" class="form-control" id="phone" formControlName="phone" placeholder="zip zop">
         </div>
         <div class="col-md-3 col-12 mt-md-0 mt-3">
-            <label for="exampleFormControlInput1" class="form-label">E-mail do responsável</label>
-            <input type="email" class="form-control" id="exampleFormControlInput1" placeholder="Email do responsável">
+            <label for="email" class="form-label">E-mail do responsável</label>
+            <input type="email" class="form-control" id="email" formControlName="email" placeholder="Email do responsável">
         </div>
     </div>
     <div class="row mt-3">
@@ -46,14 +46,19 @@
         <div class="d-flex flex-column align-items-start mt-3 gap-3">
             @for (item of needs; track $index) {
             <div class="form-check d-flex align-items-center">
-                <input class="form-check-input" type="checkbox" [value]="item" (change)="updateList(item)" [id]="item">
+                <input class="form-check-input" type="checkbox" [value]="item" [checked]="shelterForm.controls.needs.value.includes(item)" (change)="updateList(item)" [id]="item">
                 <label class="form-check-label" [for]="item">
-                    {{item}}
+                    {{item | titlecase}}
                 </label>
             </div>
             }
-            <textarea type="text" class="form-control w-auto" id="exampleFormControlInput1" placeholder="Outros"></textarea>
+            <textarea type="text" class="form-control w-auto" id="other_needs" formControlName="other_needs" placeholder="Outros"></textarea>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="d-flex flex-md-row flex-column justify-content-center gap-3">
+            <button class="btn btn-outline-primary fw-medium" [routerLink]="['/abrigos']" routerLinkActive="router-link-active" >Voltar</button>
+            <button class="btn btn-primary fw-medium" (click)="updateShelter()">Salvar alterações</button>
         </div>
     </div>
 </div>
-{{selectedNeeds()}}

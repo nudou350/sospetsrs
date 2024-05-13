@@ -23,7 +23,7 @@
                 }
             </div>
             <div class="d-flex flex-column align-items-center mt-2 gap-2">
-                <a routerLink="/editar-abrigo" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">Editar abrigo</a>
+                <a [routerLink]="'/editar-abrigo/'+shelter()?.id" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">Editar abrigo</a>
                 <a class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
             </div>
         </div>

@@ -1,5 +1,5 @@
 export interface IShelterInterface{
-    id: number;
+    id?: number;
     location: string;
     address: string;
     name: string;
@@ -9,8 +9,8 @@ export interface IShelterInterface{
     occupation: number;
     owner: string;
     needs: string[];
-    other_needs: string[];
-    createdAt: Date;
-    updatedAt: Date;
-    updatedBy: number;
+    other_needs: string;
+    createdAt?: Date;
+    updatedAt?: Date;
+    updatedBy?: number;
 }

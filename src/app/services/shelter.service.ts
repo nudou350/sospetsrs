@@ -12,6 +12,16 @@ export class ShelterService {
 
   getShelters(): Observable<IShelterInterface[]>{
     return this.#http.get<{data: IShelterInterface[]}>(`${environment.apiUrl}/shelters`).pipe(
-      map(res => res.data))
+      map(res => res.data));
+  }
+
+  getShelterById(id: number): Observable<IShelterInterface>{
+    return this.#http.get<IShelterInterface>(`${environment.apiUrl}/shelters/${id}`).pipe(
+      map(res => res));
+  }
+
+  updateShelter(id: number, shelter: IShelterInterface): Observable<IShelterInterface>{
+    return this.#http.put<IShelterInterface>(`${environment.apiUrl}/shelters/${id}`, shelter).pipe(
+      map(res => res));
   }
 }

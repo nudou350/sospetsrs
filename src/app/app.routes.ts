@@ -26,7 +26,7 @@ export const routes: Routes = [
     loadComponent: () => import('./components/abrigo/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
   },
   {
-    path: 'editar-abrigo',
+    path: 'editar-abrigo/:id',
     loadComponent: () => import('./components/abrigo/components/edit-shelter/edit-shelter.component').then(m => m.EditShelterComponent)
   }
 ];
