@@ -67,8 +67,12 @@
                 <button class="btn btn-primary fw-medium" (click)="updateShelter()">Salvar alterações</button>
             </div>
         </div>
-    </div>    
+    </div>
 }
 @else {
     <p>Carregando...</p>
 }
+
+
+<ng-template #successTpl>Abrigo editado com sucesso</ng-template>
+<ng-template #errorTpl>Erro ao editar abrigo!</ng-template>

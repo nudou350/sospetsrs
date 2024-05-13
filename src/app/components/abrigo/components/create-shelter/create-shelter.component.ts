@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
+import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({
   selector: 'app-create-shelter',
@@ -34,6 +35,11 @@ export class CreateShelterComponent {
     other_needs: ['']
   });
 
+  toastService = inject(ToastService)
+
+  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
+  @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
+
   updateList(item: string){
     console.log(item)
     if(this.selectedNeeds().includes(item)){
@@ -48,8 +54,14 @@ export class CreateShelterComponent {
 
   register(){
       return confirm('Deseja realmente cadastrar esse abrigo?') &&
-      this.#shelterService.createShelter(this.form.getRawValue()).subscribe()
-    
+      this.#shelterService.createShelter(this.form.getRawValue()).subscribe({
+        next:()=>{
+          this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+        },error:()=>{
+          this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
+        }
+      })
+
   }
 
 }
