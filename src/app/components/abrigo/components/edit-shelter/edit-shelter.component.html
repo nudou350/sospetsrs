@@ -65,6 +65,7 @@
             <div class="d-flex flex-md-row flex-column justify-content-center gap-3">
                 <button class="btn btn-outline-primary fw-medium" [routerLink]="['/abrigos']" routerLinkActive="router-link-active" >Voltar</button>
                 <button class="btn btn-primary fw-medium" (click)="updateShelter()">Salvar alterações</button>
+                <button class="btn btn-danger fw-medium" (click)="deleteShelter()">Apagar abrigo</button>
             </div>
         </div>
     </div>
@@ -76,3 +77,4 @@
 
 <ng-template #successTpl>Abrigo editado com sucesso</ng-template>
 <ng-template #errorTpl>Erro ao editar abrigo!</ng-template>
+<ng-template #deleteTpl>Abrigo deletado com sucesso</ng-template>

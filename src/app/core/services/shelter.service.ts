@@ -34,4 +34,7 @@ export class ShelterService {
     return this.#http.post<IShelterInterface>(`${environment.apiUrl}/shelters`, shelter).pipe(
       map(res => res));
   }
+  deleteShelter(id: number) {
+    return this.#http.delete(`${environment.apiUrl}/shelters/${id}`);
+  }
 }
