@@ -7,11 +7,11 @@
     <div [ngbCollapse]="isMenuCollapsed" class="collapse navbar-collapse ms-lg-5">
       <ul class="navbar-nav gap-3">
         <li class="nav-item active">
-          <a class="nav-link text-primary" [routerLink]="''" routerLinkActive="active"
+          <a class="nav-link text-primary pointer" [routerLink]="''" routerLinkActive="active"
             (click)="isMenuCollapsed = true">Início</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link text-primary" [routerLink]="'/abrigos'" routerLinkActive="active"
+          <a class="nav-link text-primary pointer" [routerLink]="'/abrigos'" routerLinkActive="active"
             (click)="isMenuCollapsed = true">Abrigos</a>
         </li>
         <!-- <li class="nav-item">
@@ -31,7 +31,7 @@
       @else {
         <div class="d-flex justify-content-end flex-grow-1">
           <a (click)="logout()" class="d-flex gap-2 align-items-center pointer">
-            <p class="text-primary subtitle2-medium">Fazer logout</p>
+            <p class="text-primary subtitle2-medium">Sair</p>
             <img src="../../../assets/icons/arrow-left.svg" alt="arrow left">
           </a>
         </div>

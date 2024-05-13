@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-footer',
@@ -11,4 +12,12 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './footer.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FooterComponent { }
+export class FooterComponent { 
+  #authService = inject(AuthService)
+
+  loggedIn = this.#authService.loggedIn
+  
+  logout(){
+    this.#authService.logout()
+  }
+}

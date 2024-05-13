@@ -6,10 +6,15 @@
   </div>
   <div class="row">
     <div class="col-12 py-5">
-      <div class="d-flex pb-4 flex-lg-row flex-column justify-content-between align-items-center">
+      <div class="d-flex pb-4 flex-lg-row flex-column justify-content-between align-items-center">        
         <div class="d-flex gap-5">
-          <a class="fs-5 text-primary h5-regular">Início</a>
-          <a class="fs-5 text-primary h5-regular">Login</a>
+          <a class="fs-5 text-primary h5-regular pointer">Início</a>
+          @if (!loggedIn()) {
+            <a class="fs-5 text-primary h5-regular pointer" routerLink="login">Login</a>
+          }
+          @else {
+            <a (click)="logout()" class="fs-5 text-primary h5-regular pointer">Sair</a>
+          }
           <!-- <a class="fs-5 text-primary h5-regular">Contatos</a> -->
         </div>
         <div class="d-flex  align-items-center gap-5 mt-lg-0 mt-3">
