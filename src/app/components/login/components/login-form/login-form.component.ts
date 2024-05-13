@@ -43,4 +43,21 @@ export class LoginFormComponent {
       });
     }
   }
+
+  onRequestResetPassword() {
+    //TODO: Melhorar fluxo, adicionar input de email na tela de recuperação talvez
+    if (!this.loginForm.get('email')?.valid) {
+      alert("Nessecário preencher o e-mail para recuperar a senha!");
+      return;
+    }
+
+    this.authService.requestResetPassword({ email: this.loginForm.value['email'] }).subscribe({
+      next: (response) => {
+        console.log('Request reset password successful', response);
+      },
+      error: (error) => {
+        console.error('Request failed', error);
+      }
+    });
+  }
 }
