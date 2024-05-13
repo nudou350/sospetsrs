@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { IShelterInterface } from '../../dto/shelter.dto';
 
 @Component({
   selector: 'app-abrigo-card',
@@ -11,4 +12,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './abrigo-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbrigoCardComponent { }
+export class AbrigoCardComponent {
+  shelter = input<IShelterInterface>()
+ }

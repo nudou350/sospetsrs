@@ -18,11 +18,11 @@ export const routes: Routes = [
     loadComponent: () => import('./components/password-recovery/password-recovery.component').then(m => m.PasswordRecoveryComponent)
   },
   {
-    path: 'abrigo',
+    path: 'abrigos',
     loadComponent: () => import('./components/abrigo/abrigo.component').then(m => m.AbrigoComponent)
   },
   {
     path: 'criar-abrigo',
-    loadComponent: () => import('./components/home/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
+    loadComponent: () => import('./components/abrigo/components/create-shelter/create-shelter.component').then(m => m.CreateShelterComponent)
   }
 ];

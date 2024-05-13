@@ -1,12 +1,15 @@
 :host {
     display: block;
-  }
-
-  @media screen and (max-width: 900px){
-    .bottom-mobile{
-      max-width: 25%;
-    }
     .w-mobile{
       width: 100%!important;
     }
+    @media screen and (max-width: 500px){
+      .bottom-mobile{
+        max-width: 25%;
+      }
+      .w-mobile{
+        width: auto!important;
+      }
+    }
   }
+
