@@ -45,6 +45,7 @@ export class EditShelterComponent implements OnInit {
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
+  @ViewChild('deleteTpl') deleteTpl!: TemplateRef<any>;
 
 
   ngOnInit(): void {
@@ -80,5 +81,14 @@ export class EditShelterComponent implements OnInit {
       }
 
     });
+  }
+  deleteShelter(){
+    const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
+    this.#shelterService.deleteShelter(shelterId).subscribe({
+      next:  ()=> {
+        this.toastService.show({ template: this.deleteTpl, classname:"text-white bg-success p-2" });
+        this.#router.navigateByUrl('/abrigos')
+      }
+    })
   }
  }
