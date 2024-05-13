@@ -1,8 +1,9 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, OnInit, inject, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
+import { ToastService } from '../../../../core/services/toast.service';
 
 @Component({
   selector: 'app-edit-shelter',
@@ -20,7 +21,7 @@ export class EditShelterComponent implements OnInit {
   needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
   selectedNeeds = signal<string[]>([])
   dataReady = signal<boolean>(false)
-  
+
   #shelterService = inject(ShelterService)
   #activatedRoute = inject(ActivatedRoute)
   #fb = inject(FormBuilder)
@@ -34,12 +35,17 @@ export class EditShelterComponent implements OnInit {
     email: ['', [Validators.required, Validators.email]],
     phone: ['', Validators.required],
     capacity: [0, [Validators.required, Validators.min(1)]],
-    occupation: [0, [Validators.required, Validators.min(0)]],    
+    occupation: [0, [Validators.required, Validators.min(0)]],
     owner: ['', Validators.required],
     needs: [['']],
     other_needs: ['']
   });
-  
+
+  toastService = inject(ToastService)
+
+  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
+  @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
+
 
   ngOnInit(): void {
     this.#shelterService.getShelterById(this.shelterId).subscribe(shelter => {
@@ -65,9 +71,14 @@ export class EditShelterComponent implements OnInit {
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
     shelter.needs = this.selectedNeeds();
-    this.#shelterService.updateShelter(shelterId, shelter).subscribe(() => {
-      alert('Abrigo atualizado com sucesso!');
-      this.#router.navigateByUrl('/abrigos')
+    this.#shelterService.updateShelter(shelterId, shelter).subscribe({
+      next:()=>{
+        this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+        this.#router.navigateByUrl('/abrigos')
+      },error:()=>{
+        this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
+      }
+
     });
   }
  }
