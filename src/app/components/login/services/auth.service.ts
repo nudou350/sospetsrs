@@ -5,7 +5,7 @@ import { catchError, map } from 'rxjs/operators';
 import { HttpService } from '../../../core/http/http.service';
 import { User } from '../models/user.model';
 import { LoginPayload } from '../dtos/login.dto';
-import { environment } from '../../../../environments/environment.example';
+import { environment } from '../../../../environments/environment';
 
 
 type AuthState = {
@@ -22,7 +22,7 @@ export class AuthService {
   private _accessTokenKey = "accessToken";
   private _state: BehaviorSubject<AuthState>;
 
-  private loginUrl = `${environment.apiUrl}/login`
+  private loginUrl = `${environment.apiUrl}/auth/login`
 
   public readonly state$;
 
