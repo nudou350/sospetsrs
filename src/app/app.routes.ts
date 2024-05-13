@@ -19,6 +19,10 @@ export const routes: Routes = [
     loadComponent: () => import('./components/password-recovery/password-recovery.component').then(m => m.PasswordRecoveryComponent)
   },
   {
+    path: 'doar',
+    loadComponent: () => import('./components/donation/donation.component').then(m => m.DonationComponent)
+  },
+  {
     path: 'abrigos',
     loadComponent: () => import('./components/abrigo/abrigo.component').then(m => m.AbrigoComponent)
   },

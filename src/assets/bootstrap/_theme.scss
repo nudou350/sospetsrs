@@ -27,7 +27,7 @@ $theme-colors: (
     "error-1": #FFE2E5,
     "error-2": #FF616D,
     "error-3": #ED3241,
-    
+
 );
 
 $font-family: 'Poppins', sans-serif !important;
@@ -49,7 +49,7 @@ $font-sizes: (
   h3: 1.75rem,
   h4: 1.5rem,
   h5: 1.25rem,
-  subtitle1: 1.125rem,
+  subtitle1: 1.25rem,
   subtitle2: 1rem,
   subtitle3: 0.875rem,
   subtitle4: 0.75rem,
@@ -66,7 +66,7 @@ $font-weights: (
   @each $weight-name, $weight in $font-weights {
     $class-name: ".#{$heading}-#{$weight-name}";
     #{$class-name} {
-      @include title-styles($size, map-get($font-sizes, $heading) * 1.2, $weight, if($weight-name == regular, $text-medium, $neutral-color-80));
+      @include title-styles($size, map-get($font-sizes, $heading) * 1.4, $weight, if($weight-name == regular, $text-medium, $neutral-color-80));
     }
   }
 }
