@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
 
 import { Observable, map } from 'rxjs';
-import { environment } from '../../../environments/environment.prod.example';
+import { environment } from '../../../environments/environment';
 import { IShelterInterface } from '../../components/abrigo/dto/shelter.dto';
 import { HttpService } from '../http/http.service';
 

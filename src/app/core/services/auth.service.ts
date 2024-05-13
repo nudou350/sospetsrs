@@ -2,7 +2,7 @@ import { Injectable, afterNextRender, inject, signal } from '@angular/core';
 import { filter, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment.prod.example';
+import { environment } from '../../../environments/environment';
 import { ILogin } from '../../components/login/dtos/login.dto';
 import { HttpService } from '../http/http.service';
 
