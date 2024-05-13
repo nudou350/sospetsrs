@@ -48,7 +48,7 @@ export class HomeLinktreeComponent {
     {
       text: "Quero doar",
       icon: 'donation',
-      url: '/',
+      url: '/doar',
       isExternal: false
     },
 

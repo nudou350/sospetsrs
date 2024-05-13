@@ -1,0 +1,38 @@
+<main class="container-box container-padding-x justify-content-center d-flex py-5 flex-column">
+  <h1 class="mb-5">Ajude a GRAD</h1>
+  <section class="col-12 text-start mb-5">
+    <div class="row">
+      <p class="col-md-6 col-12 subtitle1-regular text-text-weak">O Grupo de Resposta a Animais em Desastres (GRAD) é um
+        grupo de voluntários composto por mais de 80 membros, de diferentes áreas de atuação e estados Brasileiros, com
+        objetivo de promover ajuda humanitária aos animais e pessoas em circunstâncias de vulnerabilidade em desastres e
+        comunidades isoladas, com equipe técnica qualificada e capacitada para atuar em diferentes situações.</p>
+      <div class="col-md-6 mt-5 mt-md-0 col-12 d-flex justify-content-center align-items-center">
+        <img src="../../../assets/img/grad-logo.png" class="logo-img"
+          alt="Logo do Grupo de Resposta a Animais em Desastres (GRAD)">
+      </div>
+    </div>
+  </section>
+  <section class="col-12 text-start align-items-center flex-column d-flex my-5">
+    <div class="row text-lg-center">
+      <div class="col-12">
+        <h2 class="mb-2">Ajude com qualquer valor</h2>
+        <p class="text-text-weak subtitle1-regular">Escaneie o QR Code para efetuar doação</p>
+      </div>
+    </div>
+    <div class="row p-5">
+      <div class="col-12 d-flex justify-content-center align-items-center">
+        <img src="../../../assets/img/donation-code.svg" class="donation-img" alt="Código qr code de doação para GRAD">
+      </div>
+    </div>
+    <p class="text-center subtitle1-regular"><strong class="text-primary ">Chave:</strong> {{donationCode}}.</p>
+    <button class="btn btn-primary mt-5" (click)="copyCode(donationCode)">Copiar código Pix</button>
+  </section>
+  <section class="col-12 text-start flex-column d-flex mt-5">
+    <h2 class="h3-regular"><img src="../../../assets/icons/donation-code-icon.png" class="me-2 donation-icon"
+        alt="Código qr code de doação para GRAD">Pix com QR Code, como fazer?</h2>
+    <span class="line"></span>
+    <p class="subtitle1-regular text-text-weak mt-4">
+      Aponte a câmera do seu celular para o QR Code e faça um Pix no app do seu banco. Se for no banco Inter, você
+      também pode baixar essa imagem e buscar o QR Code na sua galeria.</p>
+  </section>
+</main>
