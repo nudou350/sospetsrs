@@ -1,11 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { ChangeDetectionStrategy, Component, inject, signal } from '@angular/core';
+import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { ShelterService } from '../../../../services/shelter.service';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-create-shelter',
   standalone: true,
   imports: [
     CommonModule,
+    ReactiveFormsModule,
+    RouterLink
   ],
   templateUrl: './create-shelter.component.html',
   styleUrl: './create-shelter.component.scss',
@@ -14,15 +19,37 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 export class CreateShelterComponent {
   needs = ['Água','Ração', 'Remédios', 'Roupinhas', 'Coleiras', 'Itens de higiene', 'Fraldas','Colchonetes','Ajuda financeira','Tapete Higiênico','Sachê para cachorro', 'Sachê para gato']
   selectedNeeds = signal<string[]>([])
+  #fb = inject(FormBuilder)
+  #shelterService = inject(ShelterService)
+  form = this.#fb.nonNullable.group({
+    location: ['', Validators.required],
+    address: ['', Validators.required],
+    name: ['', Validators.required],
+    email: ['', [Validators.required, Validators.email]],
+    phone: ['', Validators.required],
+    capacity: [0, [Validators.required, Validators.min(1)]],
+    occupation: [0, [Validators.required, Validators.min(0)]],
+    owner: ['', Validators.required],
+    needs: [['']],
+    other_needs: ['']
+  });
 
   updateList(item: string){
     console.log(item)
     if(this.selectedNeeds().includes(item)){
       const newList = this.selectedNeeds().filter(need => need !== item)
       this.selectedNeeds.set(newList)
+      this.form.controls.needs.setValue(newList)
     }else{
       this.selectedNeeds.update(need => [...need, item])
+      this.form.controls.needs.setValue([...this.selectedNeeds()])
     }
+  }
+
+  register(){
+      return confirm('Deseja realmente cadastrar esse abrigo?') &&
+      this.#shelterService.createShelter(this.form.getRawValue()).subscribe()
+    
   }
 
 }

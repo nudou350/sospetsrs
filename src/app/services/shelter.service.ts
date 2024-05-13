@@ -24,4 +24,9 @@ export class ShelterService {
     return this.#http.put<IShelterInterface>(`${environment.apiUrl}/shelters/${id}`, shelter).pipe(
       map(res => res));
   }
+  
+  createShelter(shelter: Partial<IShelterInterface>): Observable<IShelterInterface>{
+    return this.#http.post<IShelterInterface>(`${environment.apiUrl}/shelters`, shelter).pipe(
+      map(res => res));
+  }
 }

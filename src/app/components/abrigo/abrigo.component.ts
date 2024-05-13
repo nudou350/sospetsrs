@@ -4,6 +4,7 @@ import { AbrigoCardComponent } from './components/abrigo-card/abrigo-card.compon
 import { AbrigoFiltersComponent } from './components/abrigo-filters/abrigo-filters.component';
 import { ShelterService } from '../../services/shelter.service';
 import { CommonModule } from '@angular/common';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-abrigo',
@@ -15,10 +16,13 @@ import { CommonModule } from '@angular/common';
     CommonModule,
     AbrigoButtonComponent,
     AbrigoCardComponent,
-    AbrigoFiltersComponent
+    AbrigoFiltersComponent,
+    NgbPaginationModule
   ]
 })
 export class AbrigoComponent {
+  page = 1
+  pageSize = 3
   #shelterService = inject(ShelterService)
   shelters$ = this.#shelterService.getShelters()
 }
