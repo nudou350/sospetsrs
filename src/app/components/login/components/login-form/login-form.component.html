@@ -1,4 +1,3 @@
-
 <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="row">
   <div class="mb-4">
     <label for="email" class="form-label">E-mail</label>
@@ -14,8 +13,9 @@
     <label for="password" class="form-label">Senha</label>
     <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password">
     <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
-    class="text-danger">
-    O campo senha é obrigatório.
+      class="text-danger">
+      O campo senha é obrigatório.
+    </div>
   </div>
   <div class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center">
     <button type="submit" class="col-md-4 col-12 btn btn-primary d-block mb-5"
@@ -25,5 +25,5 @@
   </div>
 </form>
 
-  <ng-template #errorTpl> Erro ao logar! Verifique seu email ou senha </ng-template>
-  <ng-template #successTpl> Login bem sucedido! </ng-template>
+<ng-template #errorTpl> Erro ao logar! Verifique seu email ou senha </ng-template>
+<ng-template #successTpl> Login bem sucedido! </ng-template>
