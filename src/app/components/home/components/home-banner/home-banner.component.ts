@@ -11,4 +11,6 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   styleUrl: './home-banner.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class HomeBannerComponent { }
+export class HomeBannerComponent {
+  rescueMapUrl = "https://earth.google.com/earth/d/1puzq1GWwlCdW_ulmV2pv47bHGqD7AUyx?usp=sharing"
+}

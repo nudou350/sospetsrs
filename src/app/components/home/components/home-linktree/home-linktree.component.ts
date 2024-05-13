@@ -18,7 +18,7 @@ export class HomeLinktreeComponent {
     {
       text: "Solicitar resgate",
       icon: 'rescue',
-      url: '/abrigos',
+      url: '/abrigo',
       isExternal: false
     },
     {

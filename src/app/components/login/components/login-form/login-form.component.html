@@ -1,23 +1,26 @@
 <form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="row">
-  <div class="mb-3">
-      <label for="email" class="form-label">E-mail</label>
-      <input type="email" class="form-control" id="email" placeholder="voluntario@email.com" formControlName="email">
-      <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="text-danger">
-          O campo email é obrigatório.
-      </div>
-      <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="text-danger">
-          Insira um e-mail válido.
-      </div>
+  <div class="mb-4">
+    <label for="email" class="form-label">E-mail</label>
+    <input type="email" class="form-control" id="email" placeholder="voluntario@email.com" formControlName="email">
+    <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="text-danger">
+      O campo email é obrigatório.
+    </div>
+    <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="text-danger">
+      Insira um e-mail válido.
+    </div>
   </div>
-  <div class="mb-3">
-      <label for="password" class="form-label">Senha</label>
-      <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password">
-      <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched" class="text-danger">
-          O campo senha é obrigatório.
-      </div>
+  <div class="mb-4">
+    <label for="password" class="form-label">Senha</label>
+    <input type="password" class="form-control" id="password" placeholder="*******" formControlName="password">
+    <div *ngIf="loginForm.get('password')?.errors?.['required'] && loginForm.get('password')?.touched"
+      class="text-danger">
+      O campo senha é obrigatório.
+    </div>
   </div>
   <div class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center">
-    <button type="submit" class="col-md-4 col-12 btn btn-primary d-block mb-3" [disabled]="!loginForm.valid">Entrar</button>
-    <a class="col-4 d-block text-center text-primary fw-medium" routerLink="/recuperar-senha">Esqueci a senha</a>
+    <button type="submit" class="col-md-4 col-12 btn btn-primary d-block mb-5"
+      [disabled]="!loginForm.valid">Entrar</button>
+    <a class="col-4 d-block text-center text-primary fw-medium subtitle1-regular" routerLink="/recuperar-senha">Esqueci
+      a senha</a>
   </div>
 </form>
