@@ -34,6 +34,15 @@ export class AuthService {
       })
     )
   }
+
+  requestResetPassword(body: {email: string}){
+    return this.#http.post<{access_token:string}>(`${environment.apiUrl}/users/reset-password`, body).pipe(
+      tap((_)=> {
+        this.#route.navigateByUrl('/recuperar-senha')
+      })
+    )
+  }
+
   logout(){
     this.#loggedIn.set(false)
     this.removeFromStorage('accessToken')
