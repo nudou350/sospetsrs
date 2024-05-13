@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, inject } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -19,10 +20,12 @@ import { NgbCollapseModule } from '@ng-bootstrap/ng-bootstrap';
 
 export class NavbarComponent {
   router = inject(Router);
-
+  #authService = inject(AuthService)
+  loggedIn = this.#authService.loggedIn
   isMenuCollapsed = true;
 
-  showLoginButton(): boolean {
-    return this.router.url === '/';
+  logout(){
+    this.#authService.logout()
   }
+ 
 }
