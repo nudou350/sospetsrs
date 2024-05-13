@@ -8,7 +8,7 @@
     <div class="col-12 py-5">
       <div class="d-flex pb-4 flex-lg-row flex-column justify-content-between align-items-center">        
         <div class="d-flex gap-5">
-          <a class="fs-5 text-primary h5-regular pointer">Início</a>
+          <a class="fs-5 text-primary h5-regular pointer" routerLink="/">Início</a>
           @if (!loggedIn()) {
             <a class="fs-5 text-primary h5-regular pointer" routerLink="login">Login</a>
           }
@@ -32,7 +32,7 @@
       <hr>
       <div class="d-flex pt-4 text-primary flex-lg-row flex-column justify-content-between align-items-center">
         <div class="d-flex flex-lg-row flex-column text-lg-between text-center gap-2">
-          <span>© 2024 Arcanimal.</span>
+          <span>© {{currentYear}} Arcanimal.</span>
           <span>Todos os direitos reservados</span>
         </div>
 
