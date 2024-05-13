@@ -1,7 +1,7 @@
 <div class="container-fluid p-md-5">
     <app-abrigo-button />
-    <app-abrigo-filters />
     <ng-container *ngIf="shelters$|async as shelters">
+        <app-abrigo-filters [shelters]="shelters"/>
         <div id="topView" class="row mt-5 d-flex align-items-end">
             @for (shelter of shelters | slice: (page-1) * pageSize : page * pageSize; track $index) {
             <div class="col-md-4 col-12 mb-4 ">
