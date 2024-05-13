@@ -36,7 +36,7 @@ export class HomeLinktreeComponent {
     {
       text: "Quero adotar",
       icon: 'paw',
-      url: 'https://www.petsos.com.br/cadastro',
+      url: 'https://www.petsos.com.br',
       isExternal: true
     },
     {
