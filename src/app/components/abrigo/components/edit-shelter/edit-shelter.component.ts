@@ -25,7 +25,7 @@ export class EditShelterComponent implements OnInit {
   #router = inject(Router)
   user = inject(AuthService).user
   canEdit = computed(()=> this.user().role == 'admin' || this.user().role == 'volunteer')
-  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato']
+  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato', 'veterinário local', 'veterinário online',' voluntário']
   selectedNeeds = signal<string[]>([])
   dataReady = signal<boolean>(false)
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
