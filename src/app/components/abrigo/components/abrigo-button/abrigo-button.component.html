@@ -1,14 +1,14 @@
-<div class="row mt-5">
-    <div [class]="canEdit() ? 'col-6' : 'col-12'">
+<div class="row mt-5 align-items-center">
+    <div [class]="canEdit() ? 'col-lg-6 col-12 text-lg-start text-center' : 'col-12'">
         <h1>Abrigos cadastrados</h1>
     </div>
-    <div *ngIf="canEdit()" class="col-6 d-flex justify-content-center flex-shrink-1">
-        <button routerLink="/cadastrar-abrigo" class="btn btn-primary w-mobile">Cadastrar abrigo</button>
+    <div *ngIf="canEdit()" class="col-lg-6 col-12 mt-lg-0 mt-3 d-flex justify-content-center text-center">
+        <h5 routerLink="/cadastrar-abrigo" class="text-primary fw-medium w-mobile">Adicionar abrigo +</h5>
     </div>
 </div>
 <div class="row mt-5">
     <div class="col-12">
-        <p class="fw-medium text-text-weak subtitle1-regular">Abaixo você consegue ver todos os abrigos cadastrados e sua disponibilidade:
+        <p class="fw-medium text-text-weak subtitle1-regular text-lg-start text-center">Abaixo você consegue ver todos os abrigos cadastrados e sua disponibilidade:
         </p>
     </div>
 </div>

@@ -1,8 +1,14 @@
 :host {
   display: block;
+  .text-overflow-ellipsis {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+  .dropdown-item.active {
+    background-color: #343a40; /* Cor de fundo mais escura */
+    color: #ffffff; /* Cor do texto para destacar */
+  }
+  
 }
 
-.dropdown-item.active {
-  background-color: #343a40; /* Cor de fundo mais escura */
-  color: #ffffff; /* Cor do texto para destacar */
-}
