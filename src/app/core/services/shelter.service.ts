@@ -22,6 +22,8 @@ export class ShelterService {
   getShelters(): Observable<IShelterInterface[]> {
     return this.#http.get<{ data: IShelterInterface[] }>(`${environment.apiUrl}/shelters`).pipe(
       map(res => res.data),
+      //order by needs array
+      tap(shelters => shelters.sort((a, b) => b.needs.length - a.needs.length)),
       tap(shelters => this.#shelters.set(shelters)))
   }
 
@@ -45,15 +47,23 @@ export class ShelterService {
 
   createShelter(shelter: Partial<IShelterInterface>): Observable<IShelterInterface> {
     return this.#http.post<IShelterInterface>(`${environment.apiUrl}/shelters`, shelter).pipe(
-      map(res => res));
+      map(res => res),
+      tap(()=> {
+        const shelters = this.#shelters()
+        shelters.push(shelter as IShelterInterface)
+        this.#shelters.set(shelters)
+      }
+    ))
   }
   deleteShelter(id: number) {
     return this.#http.delete(`${environment.apiUrl}/shelters/${id}`).pipe(
       tap(()=> {
+        console.log(this.#shelters())
         const shelters = this.#shelters()
         const index = shelters.findIndex(s => s.id === id)
         shelters.splice(index, 1)
         this.#shelters.set(shelters)
+        console.log(this.#shelters())
       })
     );
   }

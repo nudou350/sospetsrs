@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, inject, signal } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
-import { RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { ToastService } from '../../../../core/services/toast.service';
 
@@ -21,6 +21,7 @@ export class CreateShelterComponent {
   needs = ['Água','Ração', 'Remédios', 'Roupinhas', 'Coleiras', 'Itens de higiene', 'Fraldas','Colchonetes','Ajuda financeira','Tapete Higiênico','Sachê para cachorro', 'Sachê para gato']
   selectedNeeds = signal<string[]>([])
   #fb = inject(FormBuilder)
+  #router = inject(Router)
   #shelterService = inject(ShelterService)
   form = this.#fb.nonNullable.group({
     location: ['', Validators.required],
@@ -53,10 +54,12 @@ export class CreateShelterComponent {
   }
 
   register(){
+    if(!this.form.controls.address.value) this.form.controls.address.setValue('Entre em contato')
       return confirm('Deseja realmente cadastrar esse abrigo?') &&
       this.#shelterService.createShelter(this.form.getRawValue()).subscribe({
         next:()=>{
           this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+          this.#router.navigateByUrl('/abrigos')
         },error:()=>{
           this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
         }

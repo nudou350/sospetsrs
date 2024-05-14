@@ -47,7 +47,7 @@ export class EditShelterComponent implements OnInit {
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
-  @ViewChild('deleteTpl') deleteTpl!: TemplateRef<any>;
+
 
 constructor(){
   effect(()=> {
@@ -88,6 +88,7 @@ constructor(){
   updateShelter(): void {
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
+    if(!shelter.address) shelter.address = 'Entre em contato';
     shelter.needs = this.selectedNeeds();
     this.#shelterService.updateShelter(shelterId, shelter).subscribe({
       next: () => {
@@ -99,13 +100,8 @@ constructor(){
 
     });
   }
-  deleteShelter() {
-    const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
-    this.#shelterService.deleteShelter(shelterId).subscribe({
-      next: () => {
-        this.toastService.show({ template: this.deleteTpl, classname: "text-white bg-success p-2" });
-        this.#router.navigateByUrl('/abrigos')
-      }
-    })
+
+  formatPhone(phone: string) {
+    return phone.replace(/\D/g, '');
   }
 }
