@@ -5,12 +5,13 @@
         <div id="topView" class="row mt-5 d-flex align-items-end">
             @for (shelter of shelters() | slice: (page-1) * pageSize : page * pageSize; track $index) {
             <div class="col-md-4 col-12 mb-4 ">
-                <app-abrigo-card [shelter]="shelter" />
+                <app-abrigo-card (deleteShelter)="deleteShelter($event)" [shelter]="shelter" />
             </div>
             }
         </div>
         <div class="d-flex justify-content-center mt-3">
-            <ngb-pagination (pageChange)="scrollTop()" [(page)]="page" [pageSize]="pageSize" [collectionSize]="shelters.length" />
+            <ngb-pagination (pageChange)="scrollTop()" [(page)]="page" [pageSize]="pageSize" [collectionSize]="shelters().length" />
         </div>
     </ng-container>
 </div>
+<ng-template #deleteTpl>Abrigo deletado com sucesso</ng-template>
