@@ -22,7 +22,7 @@ export class HomeLinktreeComponent {
       isExternal: true
     },
     {
-      text: "Visualizar abrigos",
+      text: "Informações dos abrigos",
       icon: 'shelter',
       url: '/abrigos',
       isExternal: false
