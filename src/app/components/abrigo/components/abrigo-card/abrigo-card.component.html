@@ -1,6 +1,6 @@
 <div *ngIf="!!shelter()" class="card p-3 shadow pointer">
     <div class="card-body">
-        <div class="d-flex justify-content-end">
+        <div *ngIf="canEdit()" class="d-flex justify-content-end">
             <img ngbTooltip="Apagar abrigo" src="../../../../../assets/icons/bin.svg" (click)="$event.stopPropagation();deleteShelter.emit(shelter()!.id!)" alt="">
         </div>
         <div class="d-flex flex-column gap-1">
