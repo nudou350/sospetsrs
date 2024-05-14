@@ -34,13 +34,16 @@
       <!-- Dropdown for Localidade -->
       <div ngbDropdown class="d-inline-block">
         <button
-          type="button"
-          class="btn btn-outline-primary fw-medium w-auto overflow-hidden max-w-50"
-          id="dropdownBasic1"
-          ngbDropdownToggle
-        >
+        type="button"
+        class="btn btn-outline-primary fw-medium w-auto overflow-hidden max-w-50 d-flex justify-content-start"
+        id="dropdownBasic1"
+        ngbDropdownToggle
+        style="width: 140px; max-width: 140px;" 
+      >
+        <p class="text-overflow-ellipsis" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;"> 
           {{ selectedLocation || "Localização" }}
-        </button>
+        </p>
+      </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button
             ngbDropdownItem

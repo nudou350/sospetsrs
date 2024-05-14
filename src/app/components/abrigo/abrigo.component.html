@@ -8,7 +8,7 @@
     />
     <div id="topView" class="row mt-5 d-flex align-items-end">
       @for (shelter of filteredShelters() | slice: (page-1) * pageSize : page *
-      pageSize; track $index) {
+      pageSize; track shelter.id) {
       <div class="col-md-4 col-12 mb-4">
         <app-abrigo-card
           (deleteShelter)="deleteShelter($event)"

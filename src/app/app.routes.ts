@@ -42,7 +42,7 @@ export const routes: Routes = [
   {
     path: 'editar-abrigo/:id',
     loadComponent: () => import('./components/abrigo/components/edit-shelter/edit-shelter.component').then(m => m.EditShelterComponent),
-    title:'Editar abrigo'
+    title:'Abrigo'
   },
   {
     path: '**',

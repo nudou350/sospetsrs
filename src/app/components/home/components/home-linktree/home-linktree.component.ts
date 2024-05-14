@@ -30,17 +30,17 @@ export class HomeLinktreeComponent {
     {
       text: "Quero ser um lar temporário",
       icon: 'temporary-home',
-      url: 'https://www.petsos.com.br/cadastro',
+      url: 'https://docs.google.com/forms/d/e/1FAIpQLSfNdBvHXW6_LrtrLFTZo9ZtSA7X-CGf1jl2pIAB_c9_B5Qwtw/viewform',
       isExternal: true
     },
     {
       text: "Quero adotar",
       icon: 'paw',
-      url: 'https://www.petsos.com.br',
+      url: 'https://forms.gle/Hi24HJmhNvkxNxkc9',
       isExternal: true
     },
     {
-      text: "Cadastrar animal encontrado",
+      text: "Procurar animal",
       icon: 'search',
       url: 'https://www.petsos.com.br/cadastro',
       isExternal: true

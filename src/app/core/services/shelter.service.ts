@@ -54,6 +54,7 @@ export class ShelterService {
           const shelters = this.#shelters();
           const index = shelters.findIndex((s) => s.id === id);
           shelters[index] = shelter;
+          shelters[index].id = id;
           this.#shelters.set(shelters);
         })
       );
