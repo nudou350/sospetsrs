@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
 import {
-  AfterViewInit,
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
+  OnInit,
   Output,
-  inject,
+  inject
 } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { Router } from '@angular/router';
 import {
   NgbDropdownModule,
   NgbTypeaheadModule,
@@ -20,9 +21,8 @@ import {
   distinctUntilChanged,
   map,
 } from 'rxjs';
-import { IShelterInterface } from '../../dto/shelter.dto';
 import { ShelterService } from '../../../../core/services/shelter.service';
-import { Router } from '@angular/router';
+import { IShelterInterface } from '../../dto/shelter.dto';
 
 @Component({
   selector: 'app-abrigo-filters',
@@ -32,7 +32,7 @@ import { Router } from '@angular/router';
   styleUrl: './abrigo-filters.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbrigoFiltersComponent implements AfterViewInit {
+export class AbrigoFiltersComponent implements OnInit {
   #shelterService = inject(ShelterService);
   #router = inject(Router);
   model!: any;
@@ -48,7 +48,7 @@ export class AbrigoFiltersComponent implements AfterViewInit {
   @Input() onChangeLocation!: (location: string) => void;
   @Input() onChangeOccupation!: (occupation: string) => void;
 
-  ngAfterViewInit(): void {
+  ngOnInit(): void {
     this.shelterNames = this.shelters.map((shelter) => shelter.name);
   }
   ngOnChanges(): void {
