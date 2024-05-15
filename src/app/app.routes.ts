@@ -45,6 +45,11 @@ export const routes: Routes = [
     title:'Abrigo'
   },
   {
+    path: 'procurar-animal',
+    loadComponent: () => import('./components/procurar-animal/procurar-animal.component').then(m => m.ProcurarAnimalComponent),
+    title:'Procurar animal'
+  },
+  {
     path: '**',
     redirectTo: ''
   }

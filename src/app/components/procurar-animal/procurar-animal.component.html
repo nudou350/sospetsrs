@@ -1,0 +1,45 @@
+<div class="container-fluid container-padding-x py-md-5">
+    <div class="row mt-5">
+        <div class="col-12">
+            <h1>Procurar animal</h1>
+        </div>
+    </div>
+    <div class="row mt-5">
+        <div class="col-12">
+            <p class="fw-medium text-text-weak subtitle1-regular">Aqui você encontra as principais plataformas de
+                registro de animais que foram resgatados.</p>
+        </div>
+    </div>
+
+    <ng-container>
+        <div id="topView" class="row mt-5">
+            @for (item of actions; track $index) {
+            <div class="col-md-4 mb-4 border border-white">
+                <div class="hover shadow pointer rounded-3" style="height: 289px;">
+                    <div class="card-body d-flex justify-content-center align-items-center p-2">
+                        <img [src]="'../../../../../../../assets/img/abrigo/' + item.imgUrl " [alt]="item.imgUrl"
+                            style="max-width: 100%; max-height: 100%;">
+                    </div>
+                    <div class="d-flex flex-column align-items-center mt-3 gap-2">
+                        <div class="container-fluid">
+                            <div class="row" style="margin-left: 15px; margin-right: 15px;">
+                                <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank"
+                                    class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">{{item.text}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            }
+        </div>
+
+        <div class="d-flex justify-content-center mt-3">
+            <ngb-pagination
+              [page]= 1
+              [pageSize]= 6
+              [collectionSize]=6
+            />
+          </div>
+    </ng-container>
+
+</div>
