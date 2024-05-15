@@ -8,16 +8,16 @@
     <div class="col-12 py-5">
       <div class="d-flex pb-4 flex-lg-row flex-column justify-content-between align-items-center">
         <div class="d-flex gap-5">
-          <a class="fs-5 text-primary h5-regular pointer" routerLink="/">Início</a>
+          <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="/">Início</a>
           @if (!loggedIn()) {
-            <a class="fs-5 text-primary h5-regular pointer" routerLink="login">Login</a>
+            <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="login">Login</a>
           }
           @else {
             <a (click)="logout()" class="fs-5 text-primary h5-regular pointer">Sair</a>
           }
           <!-- <a class="fs-5 text-primary h5-regular">Contatos</a> -->
         </div>
-        <div class="d-flex  align-items-center gap-5 mt-lg-0 mt-3">
+        <div class="d-flex  align-items-center gap-5 mt-lg-0 mt-5">
           <a href="https://www.facebook.com/profile.php?id=61559172705930" target="_blank">
             <img class="channels" src="../../../assets/icons/facebook.svg" alt="facebook icon">
           </a>
