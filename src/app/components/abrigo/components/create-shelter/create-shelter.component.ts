@@ -30,7 +30,7 @@ export class CreateShelterComponent {
     address: ['', Validators.required],
     name: ['', Validators.required],
     email: ['', [Validators.required, Validators.email]],
-    phone: ['', Validators.required],
+    phone: ['0', Validators.required],
     capacity: [0, [Validators.required, Validators.min(1)]],
     occupation: [0, [Validators.required, Validators.min(0)]],
     owner: ['', Validators.required],
