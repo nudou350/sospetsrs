@@ -42,12 +42,12 @@ export const routes: Routes = [
   {
     path: 'editar-abrigo/:id',
     loadComponent: () => import('./components/abrigo/components/edit-shelter/edit-shelter.component').then(m => m.EditShelterComponent),
-    title:'Abrigo'
+    title:'Arcanimal | Abrigo'
   },
   {
     path: 'procurar-animal',
     loadComponent: () => import('./components/procurar-animal/procurar-animal.component').then(m => m.ProcurarAnimalComponent),
-    title:'Procurar animal'
+    title:'Arcanimal | Procurar animal'
   },
   {
     path: '**',

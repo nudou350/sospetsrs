@@ -14,7 +14,7 @@
     <ng-container>
         <div id="topView" class="row mt-5">
             @for (item of actions; track $index) {
-            <div class="col-md-4 mb-4 border border-white">
+            <div class="col-lg-4 mb-4 border border-white">
                 <div class="hover shadow pointer rounded-3" style="height: 289px;">
                     <div class="card-body d-flex justify-content-center align-items-center p-2">
                         <img [src]="'../../../../../../../assets/img/abrigo/' + item.imgUrl " [alt]="item.imgUrl"
@@ -24,7 +24,8 @@
                         <div class="container-fluid">
                             <div class="row" style="margin-left: 15px; margin-right: 15px;">
                                 <a (click)="$event.stopPropagation()" href="{{item.url}}" target="_blank"
-                                    class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">{{item.text}}</a>
+                                class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium" 
+                                style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{item.text}}</a>
                             </div>
                         </div>
                     </div>
