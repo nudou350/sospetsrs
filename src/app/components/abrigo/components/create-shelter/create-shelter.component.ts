@@ -4,6 +4,7 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { ToastService } from '../../../../core/services/toast.service';
+import { CapitalPipe } from '../../../../core/pipes/capital.pipe';
 
 @Component({
   selector: 'app-create-shelter',
@@ -11,14 +12,15 @@ import { ToastService } from '../../../../core/services/toast.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    CapitalPipe
   ],
   templateUrl: './create-shelter.component.html',
   styleUrl: './create-shelter.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateShelterComponent {
-  needs = ['Água','Ração', 'Remédios', 'Roupinhas', 'Coleiras', 'Itens de higiene', 'Fraldas','Colchonetes','Ajuda financeira','Tapete Higiênico','Sachê para cachorro', 'Sachê para gato','veterinário local', 'veterinário online',' voluntário']
+  needs = ['Água','Ração', 'Remédios', 'Roupinhas', 'Coleiras', 'Itens de higiene', 'Fraldas','Colchonetes','Ajuda financeira','Tapete Higiênico','Sachê para cachorro', 'Sachê para gato','veterinário local', 'veterinário online','voluntário']
   selectedNeeds = signal<string[]>([])
   #fb = inject(FormBuilder)
   #router = inject(Router)

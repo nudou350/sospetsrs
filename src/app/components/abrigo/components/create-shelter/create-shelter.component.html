@@ -53,7 +53,7 @@
             <div class="form-check d-flex align-items-center">
                 <input class="form-check-input" type="checkbox"  [value]="item" (change)="updateList(item)" [id]="item">
                 <label class="form-check-label" [for]="item">
-                    {{item}}
+                    {{item | appCapital}}
                 </label>
             </div>
             }

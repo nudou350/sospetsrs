@@ -5,6 +5,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { AuthService } from '../../../../core/services/auth.service';
+import { CapitalPipe } from '../../../../core/pipes/capital.pipe';
 
 @Component({
   selector: 'app-edit-shelter',
@@ -12,7 +13,8 @@ import { AuthService } from '../../../../core/services/auth.service';
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    CapitalPipe
   ],
   templateUrl: './edit-shelter.component.html',
   styleUrl: './edit-shelter.component.scss',
@@ -25,7 +27,7 @@ export class EditShelterComponent implements OnInit {
   #router = inject(Router)
   user = inject(AuthService).user
   canEdit = computed(()=> this.user().role == 'admin' || this.user().role == 'volunteer')
-  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato', 'veterinário local', 'veterinário online',' voluntário']
+  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato', 'veterinário local', 'veterinário online','voluntário']
   selectedNeeds = signal<string[]>([])
   dataReady = signal<boolean>(false)
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
