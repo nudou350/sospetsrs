@@ -42,6 +42,7 @@ export class CreateShelterComponent {
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
+  @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
 
   updateList(item: string){
     console.log(item)
@@ -56,6 +57,11 @@ export class CreateShelterComponent {
   }
 
   register(){
+        //check if occupation is bigger than capacity
+        if (this.form.controls.occupation.value > this.form.controls.capacity.value) {
+          this.toastService.show({ template: this.capacityTpl, classname: "text-white bg-danger p-2" });
+          return;
+        }
     if(!this.form.controls.address.value) this.form.controls.address.setValue('Entre em contato')
       return confirm('Deseja realmente cadastrar esse abrigo?') &&
       this.#shelterService.createShelter(this.form.getRawValue()).subscribe({

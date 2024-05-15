@@ -49,6 +49,7 @@ export class EditShelterComponent implements OnInit {
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
+  @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
 
 
 constructor(){
@@ -88,6 +89,11 @@ constructor(){
   }
 
   updateShelter(): void {
+    //check if occupation is bigger than capacity
+    if (this.shelterForm.controls.occupation.value > this.shelterForm.controls.capacity.value) {
+      this.toastService.show({ template: this.capacityTpl, classname: "text-white bg-danger p-2" });
+      return;
+    }
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
     if(!shelter.address) shelter.address = 'Entre em contato';
