@@ -42,8 +42,8 @@ export class HomeLinktreeComponent {
     {
       text: "Procurar animal",
       icon: 'search',
-      url: 'https://www.petsos.com.br/cadastro',
-      isExternal: true
+      url: '/procurar-animal',
+      isExternal: false
     },
     {
       text: "Quero doar",
