@@ -29,7 +29,7 @@
     <div class="row mt-3">
         <div class="col-md-3 col-12">
             <label for="location" class="form-label">Localização do abrigo</label>
-            <input type="text" class="form-control" id="location" formControlName="location" placeholder="Cidade">
+            <input formControlName="location" id="typeahead-basic" type="text" class="form-control" [(ngModel)]="model" [ngbTypeahead]="search" />
         </div>
         <div class="col-md-3 col-12 mt-md-0 mt-3">
             <label for="owner" class="form-label">Responsável pelo abrigo</label>
@@ -71,3 +71,4 @@
 <ng-template #successTpl>Abrigo cadastrado com sucesso</ng-template>
 <ng-template #errorTpl>Erro ao cadastrar abrigo!</ng-template>
 <ng-template #capacityTpl>O número de Pets não pode ser maior que a capacidade do abrigo</ng-template>
+<ng-template #cityTpl>Cidade não encontrada. Verifique a localização</ng-template>
