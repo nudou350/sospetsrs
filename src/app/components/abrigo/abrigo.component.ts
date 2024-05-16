@@ -46,7 +46,8 @@ export class AbrigoComponent {
   searchFilter = signal<IShelterInterface[]>(this.shelters())
 
   filteredShelters = computed(() => {
-    if (this.searchFilter().length === 0) return this.shelters()
+    //if nothing is typed in the search bar, return all shelters that have capacity greater than occupation or all shelters if capacity is set to 'Todos'
+    if (this.searchFilter().length === 0) return this.capacity() === 'Todos' ? this.shelters() :this.shelters().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
     return this.capacity() === 'Todos' ? this.searchFilter() :
       this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
 
