@@ -1,3 +1,4 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -8,15 +9,14 @@ import {
   inject,
   signal,
 } from '@angular/core';
-import { AbrigoButtonComponent } from './components/abrigo-button/abrigo-button.component';
-import { AbrigoCardComponent } from './components/abrigo-card/abrigo-card.component';
-import { AbrigoFiltersComponent } from './components/abrigo-filters/abrigo-filters.component';
-import { CommonModule } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShelterService } from '../../core/services/shelter.service';
 import { ToastService } from '../../core/services/toast.service';
-import { IShelterInterface } from './dto/shelter.dto';
 import { RSCitiesDto } from '../../shared/dtos/cities.dto';
+import { AbrigoButtonComponent } from './components/abrigo-button/abrigo-button.component';
+import { AbrigoCardComponent } from './components/abrigo-card/abrigo-card.component';
+import { AbrigoFiltersComponent } from './components/abrigo-filters/abrigo-filters.component';
+import { IShelterInterface } from './dto/shelter.dto';
 
 @Component({
   selector: 'app-abrigo',
@@ -45,21 +45,22 @@ export class AbrigoComponent {
   capacity = signal<string>('Todos')
   searchFilter = signal<IShelterInterface[]>(this.shelters())
 
-  filteredShelters = computed(()=> {
-   return this.capacity() === 'Todos' ? this.searchFilter() : 
-   this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)  
+  filteredShelters = computed(() => {
+    if (this.searchFilter().length === 0) return this.shelters()
+    return this.capacity() === 'Todos' ? this.searchFilter() :
+      this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
 
   })
-  
+
   scrollTop() {
     const element = document.getElementById('topView');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   }
 
-  updateSearchFilter(event:any){
+  updateSearchFilter(event: any) {
     this.searchFilter.set(event)
   }
-  updateCapacityFilter(event:any){
+  updateCapacityFilter(event: any) {
     this.capacity.set(event)
   }
 
