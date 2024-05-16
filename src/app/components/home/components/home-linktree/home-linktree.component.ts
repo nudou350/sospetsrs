@@ -36,7 +36,7 @@ export class HomeLinktreeComponent {
     {
       text: "Quero adotar",
       icon: 'paw',
-      url: 'https://forms.gle/Hi24HJmhNvkxNxkc9',
+      url: 'https://forms.gle/1AfLdgez3RDUEpn36',
       isExternal: true
     },
     {
