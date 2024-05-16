@@ -8,7 +8,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class DonationComponent {
-  donationCode = "doe@gradbrasil.org.brr";
+  donationCode = "doe@gradbrasil.org.br";
 
   copyCode(code: string): void {
     navigator.clipboard.writeText(code).then(() => {
