@@ -23,6 +23,7 @@ import {
 } from 'rxjs';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { IShelterInterface } from '../../dto/shelter.dto';
+import { RSCitiesDto } from '../../../../shared/dtos/cities.dto';
 
 @Component({
   selector: 'app-abrigo-filters',
@@ -39,68 +40,50 @@ export class AbrigoFiltersComponent implements OnInit {
   @Input() shelters!: IShelterInterface[];
   shelterState = this.#shelterService.shelters;
   shelterNames: string[] = [];
-  @Output() filteredShelters = new EventEmitter<any[]>();
-  selectedLocation: string = 'Todos';
-  selectedOccupation: string = 'Todos';
-  locations: string[] = [];
-  occupation: string = 'Todos';
-
-  @Input() onChangeLocation!: (location: string) => void;
-  @Input() onChangeOccupation!: (occupation: string) => void;
+  capacity = 'Todos'
+  @Output() searchFilter = new EventEmitter<IShelterInterface[]>();
+  @Output() capacityFilter = new EventEmitter();
+  cities = RSCitiesDto
 
   ngOnInit(): void {
     this.shelterNames = this.shelters.map((shelter) => shelter.name);
   }
-  ngOnChanges(): void {
-    this.locations = this.getUniqueLocations(this.shelters);
+
+
+
+  private static removeAccents(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
   }
-
-  filterByLocation(location: string) {
-    this.selectedLocation = location;
-
-    location !== 'Todos'
-      ? this.onChangeLocation(location)
-      : this.onChangeLocation('');
-  }
-
-  filterByOccupation(occupation: string) {
-    this.occupation = occupation;
-    this.selectedOccupation = occupation;
-
-    occupation !== 'Todos'
-      ? this.onChangeOccupation(occupation)
-      : this.onChangeOccupation('');
-  }
-
-  private getUniqueLocations(shelters: IShelterInterface[]): string[] {
-    const uniqueLocations = new Set<string>();
-    shelters.forEach((shelter) => {
-      uniqueLocations.add(shelter.location);
-    });
-    return Array.from(uniqueLocations);
-  }
-
   search: OperatorFunction<string, readonly string[]> = (
     text$: Observable<string>
   ) =>
     text$.pipe(
-      debounceTime(200),
+      debounceTime(500),
       distinctUntilChanged(),
-      map((term) =>
-        term.length < 2
-          ? []
-          : this.shelterNames
-              .filter((v) => v.toLowerCase().indexOf(term.toLowerCase()) > -1)
-              .slice(0, 10)
-      )
+      map((term) => {
+        const sanitizedTerm = AbrigoFiltersComponent.removeAccents(term).toLowerCase();
+        if(sanitizedTerm.length < 2) {
+          this.searchFilter.emit(this.shelters)
+          return []
+        }
+        //check shelter names and cities
+        else{
+          const filteredResult: IShelterInterface[] = []
+          const returnQuery: string[]= []
+          this.shelters.forEach((shelter) => {
+            if(AbrigoFiltersComponent.removeAccents(shelter.name).toLowerCase().includes(sanitizedTerm) || AbrigoFiltersComponent.removeAccents(shelter.location).toLowerCase().includes(sanitizedTerm)){
+              filteredResult.push(shelter);
+              if(AbrigoFiltersComponent.removeAccents(shelter.location).toLowerCase().includes(sanitizedTerm)){
+                returnQuery.includes(AbrigoFiltersComponent.removeAccents(shelter.location)) ? null : returnQuery.push(shelter.location)
+              }
+              else{
+                returnQuery.push(shelter.name)
+              }
+            }
+          });
+         this.searchFilter.emit(filteredResult)
+          return returnQuery
+        }
+      })
     );
-
-  navigateToShelter(event: any) {
-    const selectedShelter = this.shelters.find(
-      (shelter) => shelter.name === event.item
-    );
-    if (selectedShelter) {
-      this.#router.navigate([`/editar-abrigo/${selectedShelter.id}`]);
-    }
-  }
 }

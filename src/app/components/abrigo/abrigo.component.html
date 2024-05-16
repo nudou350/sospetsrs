@@ -1,10 +1,10 @@
 <div class="container-fluid container-padding-x py-md-5">
   <app-abrigo-button />
-  <ng-container *ngIf="filteredShelters()">
+  <ng-container >
     <app-abrigo-filters
       [shelters]="shelters()"
-      [onChangeLocation]="changeLocation"
-      [onChangeOccupation]="changeOccupation"
+      (searchFilter)="updateSearchFilter($event)"
+      (capacityFilter)="updateCapacityFilter($event)"
     />
     <div id="topView" class="row mt-5 d-flex align-items-end">
       @for (shelter of filteredShelters() | slice: (page-1) * pageSize : page *

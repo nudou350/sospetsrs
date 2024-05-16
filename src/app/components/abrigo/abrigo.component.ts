@@ -15,6 +15,8 @@ import { CommonModule } from '@angular/common';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 import { ShelterService } from '../../core/services/shelter.service';
 import { ToastService } from '../../core/services/toast.service';
+import { IShelterInterface } from './dto/shelter.dto';
+import { RSCitiesDto } from '../../shared/dtos/cities.dto';
 
 @Component({
   selector: 'app-abrigo',
@@ -38,35 +40,29 @@ export class AbrigoComponent {
   #cdr = inject(ChangeDetectorRef);
   toastService = inject(ToastService);
 
+  cities = RSCitiesDto
   shelters = this.#shelterService.shelters;
+  capacity = signal<string>('Todos')
+  searchFilter = signal<IShelterInterface[]>(this.shelters())
 
-  location = signal<string>('');
-  occupation = signal<string>('');
+  filteredShelters = computed(()=> {
+   return this.capacity() === 'Todos' ? this.searchFilter() : 
+   this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)  
 
-  changeLocation = (location: string) => {
-    this.location.set(location);
-  };
-
-  changeOccupation = (occupation: string) => {
-    this.occupation.set(occupation);
-  };
-  filteredShelters = computed(() => {
-    const location = this.location();
-    const occupation = this.occupation();
-    return this.#shelterService
-      .shelters()
-      .filter((shelter) => {
-        return location === '' || shelter.location === location;
-      })
-      .filter((shelter) => {
-        return occupation === '' || shelter.capacity - shelter.occupation > 0;
-      });
-  });
-
+  })
+  
   scrollTop() {
     const element = document.getElementById('topView');
     if (element) element.scrollIntoView({ behavior: 'smooth' });
   }
+
+  updateSearchFilter(event:any){
+    this.searchFilter.set(event)
+  }
+  updateCapacityFilter(event:any){
+    this.capacity.set(event)
+  }
+
 
   deleteShelter(id: number) {
     confirm('Tem certeza que deseja deletar o abrigo?') &&
@@ -80,4 +76,5 @@ export class AbrigoComponent {
         },
       });
   }
+
 }

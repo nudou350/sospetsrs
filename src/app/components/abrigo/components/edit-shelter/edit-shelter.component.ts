@@ -1,11 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { ChangeDetectionStrategy, Component, OnInit, TemplateRef, ViewChild, computed, effect, inject, signal } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormBuilder, FormsModule, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { ShelterService } from '../../../../core/services/shelter.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { AuthService } from '../../../../core/services/auth.service';
 import { CapitalPipe } from '../../../../core/pipes/capital.pipe';
+import { OperatorFunction, Observable, debounceTime, distinctUntilChanged, map } from 'rxjs';
+import { CreateShelterComponent } from '../create-shelter/create-shelter.component';
+import { RSCitiesDto } from '../../../../shared/dtos/cities.dto';
+import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-edit-shelter',
@@ -14,7 +18,9 @@ import { CapitalPipe } from '../../../../core/pipes/capital.pipe';
     CommonModule,
     ReactiveFormsModule,
     RouterLink,
-    CapitalPipe
+    CapitalPipe,
+    FormsModule,
+    NgbTypeaheadModule
   ],
   templateUrl: './edit-shelter.component.html',
   styleUrl: './edit-shelter.component.scss',
@@ -31,7 +37,8 @@ export class EditShelterComponent implements OnInit {
   selectedNeeds = signal<string[]>([])
   dataReady = signal<boolean>(false)
   shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
-
+  cities = RSCitiesDto
+  model:any
   shelterForm = this.#fb.nonNullable.group({
     location: ['', Validators.required],
     address: ['', Validators.required],
@@ -50,7 +57,7 @@ export class EditShelterComponent implements OnInit {
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
   @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
-
+  @ViewChild('cityTpl') city!: TemplateRef<any>;
 
 constructor(){
   effect(()=> {
@@ -64,6 +71,7 @@ constructor(){
       this.shelterForm.patchValue(currentShelter);
       this.shelterForm.controls.needs.setValue(currentShelter.needs);
       this.selectedNeeds.set(currentShelter.needs);
+      this.model = currentShelter.location;
       this.dataReady.set(true);
     }
     //if we access from the edit page directly, we need to download the data
@@ -77,8 +85,25 @@ constructor(){
     }
   }
 
+  private static removeAccents(str: string): string {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
+  }
+  search: OperatorFunction<string, readonly string[]> = (
+    text$: Observable<string>
+  ) =>
+    text$.pipe(
+      debounceTime(200),
+      distinctUntilChanged(),
+      map((term) => {
+        const sanitizedTerm = EditShelterComponent.removeAccents(term).toLowerCase();
+        return sanitizedTerm.length < 2
+          ? []
+          : this.cities
+              .filter((v) => EditShelterComponent.removeAccents(v).toLowerCase().indexOf(sanitizedTerm) > -1)
+              .slice(0, 10)
+      })
+    );
   updateList(item: string) {
-    console.log(item)
     if (this.selectedNeeds().includes(item)) {
       const newList = this.selectedNeeds().filter(need => need !== item)
       this.selectedNeeds.set(newList)
@@ -89,6 +114,10 @@ constructor(){
   }
 
   updateShelter(): void {
+    if(!this.cities.includes(this.model)){
+      this.toastService.show({ template: this.city, classname: "text-white bg-danger p-2" });
+      return
+    }
     //check if occupation is bigger than capacity
     if (this.shelterForm.controls.occupation.value > this.shelterForm.controls.capacity.value) {
       this.toastService.show({ template: this.capacityTpl, classname: "text-white bg-danger p-2" });

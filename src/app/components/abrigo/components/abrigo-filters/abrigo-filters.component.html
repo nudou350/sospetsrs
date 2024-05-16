@@ -7,7 +7,7 @@
         type="text"
         class="form-control"
         placeholder="Escreva o nome do abrigo..."
-        (selectItem)="navigateToShelter($event)"
+     
         [(ngModel)]="model"
         [ngbTypeahead]="search"
       />
@@ -27,11 +27,11 @@
       </span>
     </div>
   </div>
-  <div class="col-lg-2 col-6 order-lg-1 order-2 mb-lg-0 mb-3">
+  <!-- <div class="col-lg-2 col-6 order-lg-1 order-2 mb-lg-0 mb-3">
     <div
       class="d-flex justify-content-end gap-3 align-items-center mt-lg-0 mt-3"
     >
-      <!-- Dropdown for Localidade -->
+      Dropdown for Localidade
       <div ngbDropdown class="d-inline-block">
         <button
         type="button"
@@ -63,10 +63,10 @@
         </div>
       </div>
     </div>
-  </div>
-  <div class="col-lg-2 col-6 order-lg-3 order-2 mb-lg-0 mb-3">
+  </div> -->
+  <div class="col-lg-2 col-12 order-lg-3 order-2 mb-lg-0 mb-3">
     <div
-      class="d-flex justify-content-start align-items-center gap-3 mt-lg-0 mt-3"
+      class="d-flex justify-content-lg-start justify-content-center align-items-center gap-3 mt-lg-0 mt-3"
     >
       <!-- Dropdown for Localidade -->
       <div ngbDropdown class="d-inline-block">
@@ -76,20 +76,20 @@
           id="dropdownBasic1"
           ngbDropdownToggle
         >
-          {{ occupation }}
+          {{ capacity}}
         </button>
         <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
           <button
             ngbDropdownItem
-            (click)="filterByOccupation('Todos')"
-            [ngClass]="{ active: selectedOccupation === 'Todos' }"
+            (click)="capacityFilter.emit('Todos'); capacity = 'Todos'"
+            [ngClass]="{ active: capacity === 'Todos' }"
           >
             Todos
           </button>
           <button
             ngbDropdownItem
-            (click)="filterByOccupation('Com vagas')"
-            [ngClass]="{ active: selectedOccupation === 'Com vagas' }"
+            (click)="capacityFilter.emit('Com vagas'); capacity = 'Com vagas'"
+            [ngClass]="{ active: capacity === 'Com vagas' }"
           >
             Com vagas
           </button>

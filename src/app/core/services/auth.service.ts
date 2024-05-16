@@ -80,7 +80,7 @@ export class AuthService {
   }
 
   requestResetPassword(body: {email: string}){
-    return this.#http.post<{access_token:string}>(`${environment.apiUrl}/users/reset-password`, body).pipe(
+    return this.#http.post<{access_token:string}>(`${environment.apiUrl}/users/reset-password?email=${body.email}`, body).pipe(
       tap((_)=> {
         this.#route.navigateByUrl('/recuperar-senha')
       })

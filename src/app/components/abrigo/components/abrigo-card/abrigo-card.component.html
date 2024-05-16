@@ -9,11 +9,11 @@
                     <span class="fw-light text-dark-1 mt-1">{{shelter()?.address ? shelter()?.address : 'Entre em contato'}}</span>
                 </div>
             <div class="d-flex gap-2 mt-1">
-                <p
+                <p *ngIf="shelter()!.capacity!=0"
                 [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-error-1 p-1 rounded px-2 fw-medium'"
                 style="color: #3B3F5C;">
                 {{shelter()!.capacity - shelter()!.occupation}} Vagas disponíveis
-            </p>
+                </p>
             </div>
             <div class="d-flex gap-2 mt-4 flex-wrap align-items-center">
                 @for (need of shelter()?.needs| slice: 0:limit(); track $index) {
@@ -28,7 +28,7 @@
             </div>
             <div class="d-flex flex-column align-items-center mt-3 gap-2">
                 <a (click)="$event.stopPropagation()" [routerLink]="'/editar-abrigo/'+shelter()?.id" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">{{canEdit() ? 'Editar abrigo' : 'Ver abrigo'}}</a>
-                <a (click)="$event.stopPropagation()" [href]="'https://wa.me/'+formatPhone(shelter()!.phone)" target="_blank" class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
+                <a *ngIf="shelter()!.phone!=='0'" (click)="$event.stopPropagation()" [href]="'https://wa.me/'+formatPhone(shelter()!.phone)" target="_blank" class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
             </div>
         </div>
     </div>
