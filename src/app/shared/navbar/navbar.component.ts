@@ -24,12 +24,12 @@ export class NavbarComponent {
   #authService = inject(AuthService)
   loggedIn = this.#authService.loggedIn
   isMenuCollapsed = true;
-  toastService = inject(ToastService)
+  #toastService = inject(ToastService)
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
 
   logout(){
-    this.toastService.show({template: this.successTpl, classname:"bg-success text-white p-2"})
+    this.#toastService.showSuccess("Logout bem sucedido! Até logo")
     this.#authService.logout()
   }
 

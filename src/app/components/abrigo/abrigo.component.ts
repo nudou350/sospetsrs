@@ -3,8 +3,6 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
-  TemplateRef,
-  ViewChild,
   computed,
   inject,
   signal,
@@ -33,12 +31,11 @@ import { IShelterInterface } from './dto/shelter.dto';
   ],
 })
 export class AbrigoComponent {
-  @ViewChild('deleteTpl') deleteTpl!: TemplateRef<any>;
   page = 1;
   pageSize = 6;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
-  toastService = inject(ToastService);
+  #toastService = inject(ToastService);
 
   cities = RSCitiesDto
   shelters = this.#shelterService.shelters;
@@ -70,10 +67,7 @@ export class AbrigoComponent {
     confirm('Tem certeza que deseja deletar o abrigo?') &&
       this.#shelterService.deleteShelter(id).subscribe({
         next: () => {
-          this.toastService.show({
-            template: this.deleteTpl,
-            classname: 'text-white bg-success p-2',
-          });
+          this.#toastService.showSuccess("Abrigo deletado com sucesso!");
           this.#cdr.markForCheck();
         },
       });
