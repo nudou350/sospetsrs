@@ -52,7 +52,7 @@ export class AbrigoComponent {
   })
   constructor(){
     afterNextRender(()=> {
-      window.innerWidth < 768 ? this.pageSize = 3 : this.pageSize = 9
+      window.innerWidth < 768 ? this.pageSize = 6 : this.pageSize = 9
     })
   }
 
