@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
+import { clippingParents } from '@popperjs/core';
 
 
 @Component({
@@ -16,7 +17,7 @@ import { ToastService } from '../../../../core/services/toast.service';
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  toastService = inject(ToastService)
+  #toastService = inject(ToastService)
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
@@ -33,11 +34,11 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+          this.#toastService.showSuccess('Login bem sucedido!'); 
           console.log('Login successful', response);
         },
         error: (error) => {
-          this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
+          this.#toastService.showError('Erro ao logar! Verifique seu email ou senha');
           console.error('Login failed', error);
         }
       });

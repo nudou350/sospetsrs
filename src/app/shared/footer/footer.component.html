@@ -1,48 +1,63 @@
 <div class="container-fluid mt-5 bg-light-2 container-padding-x pb-5 pt-4">
+  <div class="d-lg-none d-flex mb-5 col-12 justify-content-center align-items-center">
+    <img src="../../../assets/img/selo.svg" alt="Selo" />
+  </div>
   <div class="row">
-    <div class="col-12 text-lg-start text-center align-items-center pt-3">
+    <div class="col-12 text-lg-start text-center align-items-center pt-3 mb-lg-0 mb-5">
       <img width="120px" src="../../../assets/icons/logo.jpg" alt="logo" class="img-fluid">
     </div>
   </div>
   <div class="row">
-    <div class="col-12 py-5">
-      <div class="d-flex pb-4 flex-lg-row flex-column justify-content-between align-items-center">
-        <div class="d-flex gap-5">
-          <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="/">Início</a>
-          @if (!loggedIn()) {
-            <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="login">Login</a>
-          }
-          @else {
-            <a (click)="logout()" class="fs-5 text-primary h5-regular pointer">Sair</a>
-          }
-          <!-- <a class="fs-5 text-primary h5-regular">Contatos</a> -->
+    <div class="col-12 pb-5">
+      <div class="d-flex justify-content-center justify-content-lg-between align-items-end col-12">
+        <div class="d-flex pb-4 flex-lg-row flex-column justify-content-center justify-content-lg-between align-items-center col-12 col-lg-9">
+          <div class="d-flex gap-5">
+            <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="/">Início</a>
+            <!-- @if (!loggedIn()) { -->
+              <a class="fs-lg-5 fs-4 text-primary h5-regular pointer" routerLink="abrigos">Abrigos</a>
+            <!-- } -->
+            <!-- @else {
+              <a (click)="logout()" class="fs-5 text-primary h5-regular pointer">Sair</a>
+            } -->
+            <!-- <a class="fs-5 text-primary h5-regular">Contatos</a> -->
+          </div>
+          <div class="d-flex  align-items-center gap-5 mt-lg-0 mt-5">
+            <a href="https://www.facebook.com/profile.php?id=61559172705930" target="_blank">
+              <img class="channels" src="../../../assets/icons/facebook.svg" alt="facebook icon"> 
+            </a>
+            <a href="https://twitter.com/Arcanimal_" target="_blank">
+              <img class="channels" src="../../../assets/icons/x.svg" alt="x icon">
+            </a>
+            <a href="https://www.instagram.com/projeto.arcanimal/" target="_blank">
+              <img class="channels" src="../../../assets/icons/instagram.svg" alt="instagram icon">
+            </a>
+          </div>
         </div>
-        <div class="d-flex  align-items-center gap-5 mt-lg-0 mt-5">
-          <a href="https://www.facebook.com/profile.php?id=61559172705930" target="_blank">
-            <img class="channels" src="../../../assets/icons/facebook.svg" alt="facebook icon">
-          </a>
-          <a href="https://twitter.com/Arcanimal_" target="_blank">
-            <img class="channels" src="../../../assets/icons/x.svg" alt="x icon">
-          </a>
-          <a href="https://www.instagram.com/projeto.arcanimal/" target="_blank">
-            <img class="channels" src="../../../assets/icons/instagram.svg" alt="instagram icon">
-          </a>
+        <div class="d-lg-block d-none">
+          <img src="../../../assets/img/selo.svg" alt="Selo" />
         </div>
       </div>
       <hr>
-      <div class="d-flex pt-4 text-primary flex-lg-row flex-column justify-content-between align-items-center">
-        <div class="d-flex flex-lg-row flex-column text-lg-between text-center gap-2">
+      <div class="d-flex pt-4 text-primary flex-lg-row flex-column justify-content-between align-items-center col-12 gap-2 gap-lg-0">
+        <div class="d-flex d-lg-none flex-column flex-lg-row justify-content-end gap-lg-4 gap-3 text-lg-between text-center mt-lg-0 mt-3 col-12 col-lg-6">
+          <div class="d-flex gap-4 justify-content-center">
+            <a>Termos de Uso</a>
+            <a>Política de privacidade</a>
+          </div>
+          <a>Exerça seu direito de titular de dados</a>
+        </div>
+
+        <div class="d-flex text-lg-between gap-2 col-12 col-lg-6 justify-content-center justify-content-lg-start mt-2 mt-lg-0">
           <span>© {{currentYear}} Arcanimal.</span>
           <span>Todos os direitos reservados</span>
         </div>
 
-        <!-- <div class="d-flex gap-lg-4 gap-3 text-lg-between text-center mt-lg-0 mt-3">
-          <a>Termos de Serviço</a>
-          <a>Política de privacidade</a>
-        </div> -->
+        <div class="d-none d-lg-flex flex-column flex-lg-row justify-content-end gap-lg-4 gap-3 text-lg-between text-center mt-lg-0 mt-3 col-6">
+          <a>Termos de Uso</a>
+          <a>Aviso de privacidade</a>
+          <a>Exerça seu direito de titular de dados</a>
+        </div>
       </div>
     </div>
   </div>
 </div>
-
-<ng-template #successTpl> Logout bem sucedido! Até logo</ng-template>

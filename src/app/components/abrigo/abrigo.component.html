@@ -21,10 +21,10 @@
       <ngb-pagination
         (pageChange)="scrollTop()"
         [(page)]="page"
+        [maxSize]="3"
         [pageSize]="pageSize"
         [collectionSize]="filteredShelters().length"
       />
     </div>
   </ng-container>
 </div>
-<ng-template #deleteTpl>Abrigo deletado com sucesso</ng-template>
