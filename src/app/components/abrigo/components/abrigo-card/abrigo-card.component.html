@@ -25,13 +25,13 @@
             </div>
             <div class="d-flex gap-2 mt-4 flex-wrap align-items-center">
                 @for (need of shelter()?.needs| slice: 0:limit(); track $index) {
-                    <span *ngIf="need.length>0" class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{need|titlecase}}</span>
+                    <span *ngIf="need.length>0" class="p-1 px-2 rounded text-text-secondary bg-background-secondary fw-medium">{{need|titlecase}}</span>
                 }
                 <ng-container *ngIf="shelter()?.needs!.length>3">
                     <span class="text-primary fw-bold" (click)="$event.stopPropagation();changeLimit()">{{limit()==2 ? 'Ver mais' : 'Ver menos'}}</span>
                 </ng-container>
                 @if(shelter()?.other_needs!.length>0){
-                    <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{shelter()?.other_needs}}</span>
+                    <span class="p-1 px-2 bg-background-secondary rounded text-text-secondary fw-medium">{{shelter()?.other_needs}}</span>
                 }
                 <ng-container  *ngIf="shelter()!.needs.length==0 && shelter()!.other_needs.length==0">
                 <p class="p-1">‎</p></ng-container>
