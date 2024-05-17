@@ -21,6 +21,7 @@
       <ngb-pagination
         (pageChange)="scrollTop()"
         [(page)]="page"
+        [maxSize]="3"
         [pageSize]="pageSize"
         [collectionSize]="filteredShelters().length"
       />

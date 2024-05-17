@@ -40,5 +40,10 @@ export class AbrigoCardComponent {
     this.limit.set(newLimit)
   }
 
+  capacityExists(capacity: number | null){
+    if(capacity === null) return false
+    return typeof capacity === 'number'
+  }
+
 
  }
