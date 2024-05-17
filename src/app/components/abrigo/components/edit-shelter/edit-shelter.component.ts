@@ -31,6 +31,7 @@ export class EditShelterComponent implements OnInit {
   #activatedRoute = inject(ActivatedRoute)
   #fb = inject(FormBuilder)
   #router = inject(Router)
+  #toastService = inject(ToastService)
   user = inject(AuthService).user
   canEdit = computed(()=> this.user().role == 'admin' || this.user().role == 'volunteer')
   needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato', 'veterinário local', 'veterinário online','voluntário']
@@ -52,12 +53,9 @@ export class EditShelterComponent implements OnInit {
     other_needs: ['']
   });
 
-  toastService = inject(ToastService)
-
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
   @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
-  @ViewChild('cityTpl') city!: TemplateRef<any>;
 
 constructor(){
   effect(()=> {
@@ -115,12 +113,13 @@ constructor(){
 
   updateShelter(): void {
     if(!this.cities.includes(this.model)){
-      this.toastService.show({ template: this.city, classname: "text-white bg-danger p-2" });
+      this.#toastService.showError("Cidade não encontrada. Verifique a localização!");
       return
     }
+
     //check if occupation is bigger than capacity
     if (this.shelterForm.controls.occupation.value > this.shelterForm.controls.capacity.value) {
-      this.toastService.show({ template: this.capacityTpl, classname: "text-white bg-danger p-2" });
+      this.#toastService.showError("O número de Pets não pode ser maior que a capacidade do abrigo!"); 
       return;
     }
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
@@ -129,10 +128,11 @@ constructor(){
     shelter.needs = this.selectedNeeds();
     this.#shelterService.updateShelter(shelterId, shelter).subscribe({
       next: () => {
-        this.toastService.show({ template: this.successTpl, classname: "text-white bg-success p-2" });
+        // this.toastService.show({ template: this.successTpl, classname: "text-white bg-success p-2" });
+        this.#toastService.showSuccess("Abrigo editado com sucesso!");
         this.#router.navigateByUrl('/abrigos')
       }, error: (err) => {
-        this.toastService.show({ template: this.errorTpl, classname: "text-white bg-danger p-2" });
+        this.#toastService.showError("Erro ao editar abrigo!"); 
       }
 
     });

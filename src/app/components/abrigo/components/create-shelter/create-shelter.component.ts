@@ -44,12 +44,7 @@ export class CreateShelterComponent {
   });
   cities = RSCitiesDto
   model:any
-  toastService = inject(ToastService)
-
-  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
-  @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
-  @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
-  @ViewChild('cityTpl') city!: TemplateRef<any>;
+  #toastService = inject(ToastService)
 
   private static removeAccents(str: string): string {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -83,22 +78,22 @@ export class CreateShelterComponent {
 
   register(){
     if(!this.cities.includes(this.form.controls.location.value)){
-      this.toastService.show({ template: this.city, classname: "text-white bg-danger p-2" });
+      this.#toastService.showError("Cidade não encontrada. Verifique a localização!");
       return
     }
         //check if occupation is bigger than capacity
         if (this.form.controls.occupation.value > this.form.controls.capacity.value) {
-          this.toastService.show({ template: this.capacityTpl, classname: "text-white bg-danger p-2" });
+          this.#toastService.showError("O número de Pets não pode ser maior que a capacidade do abrigo!"); 
           return;
         }
     if(!this.form.controls.address.value) this.form.controls.address.setValue('Entre em contato')
       return confirm('Deseja realmente cadastrar esse abrigo?') &&
       this.#shelterService.createShelter(this.form.getRawValue()).subscribe({
         next:()=>{
-          this.toastService.show({ template: this.successTpl, classname:"text-white bg-success p-2" });
+          this.#toastService.showSuccess("Abrigo cadastrado com sucesso!");
           this.#router.navigateByUrl('/abrigos')
         },error:()=>{
-          this.toastService.show({ template: this.errorTpl, classname:"text-white bg-danger p-2" });
+          this.#toastService.showError("Erro ao cadastrar abrigo!");
         }
       })
 
