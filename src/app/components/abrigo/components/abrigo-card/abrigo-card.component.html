@@ -1,19 +1,27 @@
 <div *ngIf="!!shelter()" class="card p-3 shadow pointer">
     <div class="card-body">
         <div *ngIf="canEdit()" class="d-flex justify-content-end">
-            <img ngbTooltip="Apagar abrigo" src="../../../../../assets/icons/bin.svg" (click)="$event.stopPropagation();deleteShelter.emit(shelter()!.id!)" alt="">
+            <img ngbTooltip="Apagar abrigo" class="img-fluid" src="../../../../../assets/icons/bin.svg" (click)="$event.stopPropagation();deleteShelter.emit(shelter()!.id!)" alt="">
         </div>
         <div class="d-flex flex-column gap-1">
             <span class="fw-bold">{{shelter()?.name}}</span>
-                <div class="d-flex gap-2 align-items-center">
-                    <span class="fw-light text-dark-1 mt-1">{{shelter()?.address ? shelter()?.address : 'Entre em contato'}}</span>
+                <div class="d-flex gap-2 align-items-center address-height">
+                    <span class="fw-light text-dark-1 mt-1 ">{{shelter()?.address ? shelter()?.address : 'Entre em contato'}}</span>
                 </div>
             <div class="d-flex gap-2 mt-1">
-                <p *ngIf="shelter()!.capacity!=0"
+                <p *ngIf="capacityExists(this.shelter()!.capacity); else noInfo"
                 [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-error-1 p-1 rounded px-2 fw-medium'"
                 style="color: #3B3F5C;">
                 {{shelter()!.capacity - shelter()!.occupation}} Vagas disponíveis
                 </p>
+                <ng-template #noInfo>
+                    <!-- <p
+                    [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-error-1 p-1 rounded px-2 fw-medium'"
+                    style="color: #3B3F5C;">
+                    Informação indisponível
+                    </p> -->
+                    <p class="p-1">‎ </p>
+                </ng-template>
             </div>
             <div class="d-flex gap-2 mt-4 flex-wrap align-items-center">
                 @for (need of shelter()?.needs| slice: 0:limit(); track $index) {
@@ -25,6 +33,8 @@
                 @if(shelter()?.other_needs!.length>0){
                     <span class="p-1 px-2 text-bg-warning rounded fw-medium" style="color: #3B3F5C;">{{shelter()?.other_needs}}</span>
                 }
+                <ng-container  *ngIf="shelter()!.needs.length==0 && shelter()!.other_needs.length==0">
+                <p class="p-1">‎</p></ng-container>
             </div>
             <div class="d-flex flex-column align-items-center mt-3 gap-2">
                 <a (click)="$event.stopPropagation()" [routerLink]="'/editar-abrigo/'+shelter()?.id" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">{{canEdit() ? 'Editar abrigo' : 'Ver abrigo'}}</a>
