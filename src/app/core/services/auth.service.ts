@@ -74,7 +74,7 @@ export class AuthService {
         this.#loggedIn.set(true)
         this.saveToStorage('accessToken', res.access_token)
         this.#user.set(res)
-        this.#route.navigateByUrl('/abrigos')
+        this.#route.navigateByUrl('/')
       })
     )
   }
