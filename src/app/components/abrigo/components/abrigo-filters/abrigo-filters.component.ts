@@ -40,7 +40,7 @@ export class AbrigoFiltersComponent implements OnInit {
   @Input() shelters!: IShelterInterface[];
   shelterState = this.#shelterService.shelters;
   shelterNames: string[] = [];
-  capacity = 'Todos'
+  capacity = 'Vagas'
   @Output() searchFilter = new EventEmitter<IShelterInterface[]>();
   @Output() capacityFilter = new EventEmitter();
   cities = RSCitiesDto
