@@ -3,6 +3,7 @@ import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
   Component,
+  afterNextRender,
   computed,
   inject,
   signal,
@@ -32,7 +33,7 @@ import { IShelterInterface } from './dto/shelter.dto';
 })
 export class AbrigoComponent {
   page = 1;
-  pageSize = 8;
+  pageSize = 9;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
   #toastService = inject(ToastService);
@@ -49,6 +50,11 @@ export class AbrigoComponent {
       this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
 
   })
+  constructor(){
+    afterNextRender(()=> {
+      window.innerWidth < 768 ? this.pageSize = 3 : this.pageSize = 9
+    })
+  }
 
   scrollTop() {
     const element = document.getElementById('topView');
