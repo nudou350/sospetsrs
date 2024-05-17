@@ -32,7 +32,7 @@ import { IShelterInterface } from './dto/shelter.dto';
 })
 export class AbrigoComponent {
   page = 1;
-  pageSize = 6;
+  pageSize = 8;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
   #toastService = inject(ToastService);
