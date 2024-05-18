@@ -1,7 +1,7 @@
 @for (toast of toastService.toasts; track toast){
 	<div class="mb-3">
 		<ngb-toast 
-		[header]="toast.header" [autohide]="true" [className]="toast.classname" 
+		[header]="toast.header" [autohide]="true" [className]="toast.classname" (click)="toastService.remove(toast)"  [delay]="2000"
 		 (hidden)="toastService.remove(toast)">
 		</ngb-toast>
 	</div>
