@@ -1,45 +1,26 @@
-<form [formGroup]="loginForm" (ngSubmit)="onLogin()" class="row">
-  <div class="mb-4">
-    <label for="email" class="form-label">E-mail</label>
-    <input
-      type="email"
-      class="form-control"
-      id="email"
-      placeholder="voluntario@email.com"
-      formControlName="email"
-    />
-    <div
-      *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched"
-      class="text-danger"
-    >
-      O campo email é obrigatório.
+<form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+  <div class="row">
+    <div class="mb-4" >
+      <label for="email" class="form-label">E-mail</label>
+      <input type="email" class="form-control" id="email" placeholder="voluntario@email.com" formControlName="email"
+        autocomplete="email" />
+      <div *ngIf="loginForm.get('email')?.errors?.['required'] && loginForm.get('email')?.touched" class="text-danger">
+        O campo email é obrigatório.
+      </div>
+      <div *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched" class="text-danger">
+        Insira um e-mail válido.
+      </div>
     </div>
-    <div
-      *ngIf="loginForm.get('email')?.errors?.['email'] && loginForm.get('email')?.touched"
-      class="text-danger"
-    >
-      Insira um e-mail válido.
+    <div class="mb-4 position-relative">
+      <app-password-input  [loginForm]="loginForm"></app-password-input>
     </div>
-  </div>
-  <div class="mb-4 position-relative">
-    <app-password-input [loginForm]="loginForm"></app-password-input>
-  </div>
-  <div
-    class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center"
-  >
-    <button
-      type="submit"
-      class="col-md-4 col-12 btn btn-primary d-block mb-5"
-      [disabled]="!loginForm.valid"
-    >
-      Entrar
-    </button>
-    <button
-      type="button"
-      (click)="onRequestResetPassword()"
-      class="col-md-4 col-12 btn text-primary"
-    >
-      Esqueci a senha
-    </button>
+    <div class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center">
+      <button type="submit" class="col-md-4 col-12 btn btn-primary d-block mb-5" [disabled]="!loginForm.valid">
+        Entrar
+      </button>
+      <button type="button" (click)="onRequestResetPassword()" class="col-md-4 col-12 btn text-primary">
+        Esqueci a senha
+      </button>
+    </div>
   </div>
 </form>
