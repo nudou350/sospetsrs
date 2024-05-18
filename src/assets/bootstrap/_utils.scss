@@ -5,7 +5,9 @@
 .pointer {
   cursor: pointer;
 }
-
+.nowrap{
+  text-wrap: nowrap;
+}
 .container-padding-x {
   padding-left: 7rem !important;
   padding-right: 7rem !important;
