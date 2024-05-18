@@ -10,7 +10,8 @@ import { FormGroup, ReactiveFormsModule } from '@angular/forms';
   styleUrl: './password-input.component.scss',
 })
 export class PasswordInputComponent {
-  @Input() messageRulePass = 'O campo senha é obrigatório';
+  @Input() labelInput = 'Senha';
+  @Input() messageRulePass = 'O campo senha é obrigatório.';
 
   @Input()
   loginForm!: FormGroup;
