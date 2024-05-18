@@ -34,7 +34,6 @@ import { PasswordInputComponent } from '../../../../shared/password-input/passwo
 export class LoginFormComponent {
   loginForm: FormGroup;
   #toastService = inject(ToastService);
-  hidePassword: boolean = true;
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
@@ -61,17 +60,6 @@ export class LoginFormComponent {
         },
       });
     }
-  }
-
-  togglePasswordVisibility(): void {
-    this.hidePassword = !this.hidePassword;
-  }
-
-  get showWarnningRulePass() {
-    return (
-      this.loginForm.get('password')?.errors?.['required'] &&
-      this.loginForm.get('password')?.touched
-    );
   }
 
   onRequestResetPassword() {
