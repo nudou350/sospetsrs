@@ -1,11 +1,22 @@
-import { ChangeDetectionStrategy, Component, TemplateRef, ViewChild, inject } from '@angular/core';
-import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import {
+  ChangeDetectionStrategy,
+  Component,
+  TemplateRef,
+  ViewChild,
+  inject,
+} from '@angular/core';
+import {
+  FormBuilder,
+  FormGroup,
+  ReactiveFormsModule,
+  Validators,
+} from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { clippingParents } from '@popperjs/core';
-
+import { PasswordInputComponent } from '../../../../shared/password-input/password-input.component';
 
 @Component({
   selector: 'app-login-form',
@@ -13,20 +24,24 @@ import { clippingParents } from '@popperjs/core';
   styleUrls: ['./login-form.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule]
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule,
+    PasswordInputComponent,
+  ],
 })
 export class LoginFormComponent {
   loginForm: FormGroup;
-  #toastService = inject(ToastService)
+  #toastService = inject(ToastService);
 
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
 
-
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required]],
     });
   }
 
@@ -40,7 +55,7 @@ export class LoginFormComponent {
         error: (error) => {
           this.#toastService.showError('Erro ao logar! Verifique seu email ou senha', 3000);
           console.error('Login failed', error);
-        }
+        },
       });
     }
   }
@@ -48,17 +63,19 @@ export class LoginFormComponent {
   onRequestResetPassword() {
     //TODO: Melhorar fluxo, adicionar input de email na tela de recuperação talvez
     if (!this.loginForm.get('email')?.valid) {
-      alert("Necessário preencher o e-mail para recuperar a senha!");
+      alert('Necessário preencher o e-mail para recuperar a senha!');
       return;
     }
 
-    this.authService.requestResetPassword({ email: this.loginForm.value['email'] }).subscribe({
-      next: (response) => {
-        console.log('Request reset password successful', response);
-      },
-      error: (error) => {
-        console.error('Request failed', error);
-      }
-    });
+    this.authService
+      .requestResetPassword({ email: this.loginForm.value['email'] })
+      .subscribe({
+        next: (response) => {
+          console.log('Request reset password successful', response);
+        },
+        error: (error) => {
+          console.error('Request failed', error);
+        },
+      });
   }
 }
