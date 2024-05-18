@@ -33,7 +33,7 @@ import { IShelterInterface } from './dto/shelter.dto';
 })
 export class AbrigoComponent {
   page = 1;
-  pageSize = 9;
+  pageSize = 8;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
   #toastService = inject(ToastService);
@@ -52,7 +52,7 @@ export class AbrigoComponent {
   })
   constructor(){
     afterNextRender(()=> {
-      window.innerWidth < 768 ? this.pageSize = 6 : this.pageSize = 9
+      window.innerWidth < 768 ? this.pageSize = 4 : this.pageSize = 8
     })
   }
 
@@ -75,6 +75,8 @@ export class AbrigoComponent {
         next: () => {
           this.#toastService.showSuccess("Abrigo deletado com sucesso!");
           this.#cdr.markForCheck();
+          //reset view
+          this.searchFilter.set(this.shelters())
         },
       });
   }

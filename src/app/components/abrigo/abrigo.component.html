@@ -6,10 +6,10 @@
       (searchFilter)="updateSearchFilter($event)"
       (capacityFilter)="updateCapacityFilter($event)"
     />
-    <div id="topView" class="row mt-5 d-flex align-items-end">
+    <div id="topView" class="row mt-5 d-flex gap-3">
       @for (shelter of filteredShelters() | slice: (page-1) * pageSize : page *
       pageSize; track shelter.id) {
-      <div class="col-md-4 col-12 mb-4">
+      <div class="col-12">
         <app-abrigo-card
           (deleteShelter)="deleteShelter($event)"
           [shelter]="shelter"

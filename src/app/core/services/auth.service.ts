@@ -1,4 +1,4 @@
-import { Injectable, afterNextRender, inject, signal } from '@angular/core';
+import { Injectable, afterNextRender, computed, inject, signal } from '@angular/core';
 import { filter, take, tap } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -18,6 +18,7 @@ export class AuthService {
   loggedIn = this.#loggedIn.asReadonly()
   #user = signal<IUser>({id: 0, name: '', email: '', role: '', phone: '', createdAt: '', updatedAt: '', updatedBy: 0})
   user = this.#user.asReadonly()
+  canEdit = computed(()=> this.#user().role === 'admin' || this.#user().role === 'volunteer')
 
   constructor(){
     afterNextRender(()=> {
