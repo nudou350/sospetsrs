@@ -45,9 +45,9 @@ export class AbrigoComponent {
 
   filteredShelters = computed(() => {
     //if nothing is typed in the search bar, return all shelters that have capacity greater than occupation or all shelters if capacity is set to 'Todos'
-    if (this.searchFilter().length === 0) return this.capacity() === 'Todos' ? this.shelters() :this.shelters().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
+    if (this.searchFilter().length === 0) return this.capacity() === 'Todos' ? this.shelters() :this.shelters().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation && shelter.occupation != null)
     return this.capacity() === 'Todos' ? this.searchFilter() :
-      this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
+      this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation && shelter.occupation != null)
 
   })
   constructor(){
