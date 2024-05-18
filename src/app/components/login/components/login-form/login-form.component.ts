@@ -16,6 +16,7 @@ import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
 import { clippingParents } from '@popperjs/core';
+import { PasswordInputComponent } from '../../../../shared/password-input/password-input.component';
 
 @Component({
   selector: 'app-login-form',
@@ -23,7 +24,12 @@ import { clippingParents } from '@popperjs/core';
   styleUrls: ['./login-form.component.scss'],
   standalone: true,
   changeDetection: ChangeDetectionStrategy.OnPush,
-  imports: [ReactiveFormsModule, CommonModule, RouterModule],
+  imports: [
+    ReactiveFormsModule,
+    CommonModule,
+    RouterModule,
+    PasswordInputComponent,
+  ],
 })
 export class LoginFormComponent {
   loginForm: FormGroup;

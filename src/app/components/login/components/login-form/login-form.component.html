@@ -22,32 +22,10 @@
     </div>
   </div>
   <div class="mb-4 position-relative">
-    <label for="password" class="form-label">Senha</label>
-    <input
-      [type]="hidePassword ? 'password' : 'text'"
-      class="form-control"
-      id="password"
-      placeholder="*******"
-      formControlName="password"
-    />
-    <span
-      [class]="
-        showWarnningRulePass
-          ? 'position-absolute top-50 end-0 translate-middle-y pe-5 pt-1'
-          : 'position-absolute top-50 end-0 translate-middle-y pe-5 custom-padding '
-      "
-      (click)="togglePasswordVisibility()"
-      style="cursor: pointer"
-    >
-      @if(hidePassword) {
-      <img src="../../../assets/icons/eye.svg" alt="arrow left" />
-      }@else {
-      <img src="../../../assets/icons/eye-slash.svg" alt="arrow left" />
-      }
-    </span>
-    <div *ngIf="showWarnningRulePass" class="text-danger">
-      O campo senha é obrigatório.
-    </div>
+    <app-password-input
+      [loginForm]="loginForm"
+      messageRulePass="O campo senha é obrigatório!"
+    ></app-password-input>
   </div>
   <div
     class="col-12 mt-4 justify-content-center d-flex flex-column align-items-center"
