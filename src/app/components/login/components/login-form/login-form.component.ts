@@ -1,9 +1,8 @@
+import { CommonModule } from '@angular/common';
 import {
   ChangeDetectionStrategy,
   Component,
-  TemplateRef,
-  ViewChild,
-  inject,
+  inject
 } from '@angular/core';
 import {
   FormBuilder,
@@ -11,11 +10,9 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ToastService } from '../../../../core/services/toast.service';
-import { clippingParents } from '@popperjs/core';
 import { PasswordInputComponent } from '../../../../shared/password-input/password-input.component';
 
 @Component({
@@ -34,9 +31,6 @@ import { PasswordInputComponent } from '../../../../shared/password-input/passwo
 export class LoginFormComponent {
   loginForm: FormGroup;
   #toastService = inject(ToastService);
-
-  @ViewChild('successTpl') successTpl!: TemplateRef<any>;
-  @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
 
   constructor(private fb: FormBuilder, private authService: AuthService) {
     this.loginForm = this.fb.group({
