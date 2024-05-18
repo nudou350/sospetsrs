@@ -49,13 +49,11 @@ export class LoginFormComponent {
     if (this.loginForm.valid) {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
-          this.#toastService.showSuccess('Login bem sucedido!');
+          this.#toastService.showSuccess('Login bem sucedido!', 3000); 
           console.log('Login successful', response);
         },
         error: (error) => {
-          this.#toastService.showError(
-            'Erro ao logar! Verifique seu email ou senha'
-          );
+          this.#toastService.showError('Erro ao logar! Verifique seu email ou senha', 3000);
           console.error('Login failed', error);
         },
       });

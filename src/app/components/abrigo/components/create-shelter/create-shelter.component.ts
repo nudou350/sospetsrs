@@ -25,7 +25,7 @@ import { NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CreateShelterComponent {
-  needs = ['Água','Ração', 'Remédios', 'Roupinhas', 'Coleiras', 'Itens de higiene', 'Fraldas','Colchonetes','Ajuda financeira','Tapete Higiênico','Sachê para cachorro', 'Sachê para gato','veterinário local', 'veterinário online','voluntário']
+  needs = ['água', 'ração', 'remédios', 'roupinhas', 'coleiras', 'itens de higiene', 'fraldas', 'colchonetes', 'ajuda financeira', 'tapete higiênico', 'sachê para cachorro', 'sachê para gato', 'veterinário local', 'veterinário online','voluntário']
   selectedNeeds = signal<string[]>([])
   #fb = inject(FormBuilder)
   #router = inject(Router)
@@ -45,6 +45,7 @@ export class CreateShelterComponent {
   cities = RSCitiesDto
   model:any
   #toastService = inject(ToastService)
+  isOtherNeedsSelected: boolean = false;
 
   private static removeAccents(str: string): string {
     return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "");
@@ -96,7 +97,14 @@ export class CreateShelterComponent {
           this.#toastService.showError("Erro ao cadastrar abrigo!");
         }
       })
+  }
 
+  updateOtherNeeds(event: Event){
+    this.isOtherNeedsSelected = (event.target as HTMLInputElement).checked
+
+    if(!this.isOtherNeedsSelected && this.form.controls.other_needs.getRawValue().length > 0){
+      this.form.controls.other_needs.setValue('');
+    }
   }
 
 }

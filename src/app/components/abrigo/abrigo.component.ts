@@ -33,7 +33,7 @@ import { IShelterInterface } from './dto/shelter.dto';
 })
 export class AbrigoComponent {
   page = 1;
-  pageSize = 9;
+  pageSize = 8;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
   #toastService = inject(ToastService);
@@ -45,14 +45,14 @@ export class AbrigoComponent {
 
   filteredShelters = computed(() => {
     //if nothing is typed in the search bar, return all shelters that have capacity greater than occupation or all shelters if capacity is set to 'Todos'
-    if (this.searchFilter().length === 0) return this.capacity() === 'Todos' ? this.shelters() :this.shelters().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
+    if (this.searchFilter().length === 0) return this.capacity() === 'Todos' ? this.shelters() :this.shelters().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation && shelter.occupation != null)
     return this.capacity() === 'Todos' ? this.searchFilter() :
-      this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation)
+      this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation && shelter.occupation != null)
 
   })
   constructor(){
     afterNextRender(()=> {
-      window.innerWidth < 768 ? this.pageSize = 6 : this.pageSize = 9
+      window.innerWidth < 768 ? this.pageSize = 4 : this.pageSize = 8
     })
   }
 
@@ -75,6 +75,8 @@ export class AbrigoComponent {
         next: () => {
           this.#toastService.showSuccess("Abrigo deletado com sucesso!");
           this.#cdr.markForCheck();
+          //reset view
+          this.searchFilter.set(this.shelters())
         },
       });
   }

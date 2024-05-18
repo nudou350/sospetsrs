@@ -3,15 +3,8 @@
 :host {
   display: block;
   .hover:hover {
-    background-color: map-get($theme-colors, 'primary');
+    background-color: #E8E9F1;
     color: white;
-    .vector-hover{
-      filter: contrast(0.5) brightness(5);
-    }
-    .card-text {
-      color: white !important;
-    }
-
   }
   .vector-width{
     width: 5rem;

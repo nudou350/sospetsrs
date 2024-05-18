@@ -26,7 +26,7 @@ export class FooterComponent {
   @ViewChild('successTpl') successTpl!: TemplateRef<any>;
 
   logout(){
-    this.#toastService.showSuccess("Logout bem sucedido! Até logo.");
+    this.#toastService.showSuccess("Logout bem sucedido! Até logo.", 3000);
 
     this.#authService.logout()
   }

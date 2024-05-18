@@ -1,17 +1,17 @@
 .btn{
     display: flex !important;
     min-height: 48px !important;
-    padding: 12px 24px !important;
+    padding: 0.3em 3em !important;
     justify-content: center !important;
     align-items: center !important;
     gap: 10px !important;
-    flex-shrink: 0;
+    flex-shrink: 1;
     font-size: 1.25rem !important;
     width: 100%;
 
-    @media screen and (min-width: 768px) {
-      max-width: 280px;
-    }
+    // @media screen and (min-width: 768px) {
+    //   max-width: 280px;
+    // }
 }
 .btn:disabled{
   background-color: #838DA4 !important;

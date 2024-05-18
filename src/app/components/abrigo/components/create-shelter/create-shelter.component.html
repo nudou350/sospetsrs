@@ -57,7 +57,13 @@
                 </label>
             </div>
             }
-            <textarea type="text" class="form-control w-auto" id="other_needs" formControlName="other_needs" placeholder="Outros"></textarea>
+            <div class="form-check d-flex align-items-center">
+                <input class="form-check-input" type="checkbox" (change)="updateOtherNeeds($event)">
+                <label class="form-check-label">
+                    Outros, quais?
+                </label>
+                <input id="other_needs" class="form-control" type="text" placeholder="Digitar itens separados por virgula" formControlName="other_needs" [readonly]="!isOtherNeedsSelected">
+            </div>
         </div>
     </div>
     <div class="row mt-5">

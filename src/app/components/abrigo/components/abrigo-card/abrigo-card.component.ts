@@ -3,54 +3,51 @@ import {
   ChangeDetectionStrategy,
   Component,
   EventEmitter,
+  Input,
   Output,
-  TemplateRef,
-  ViewChild,
-  computed,
-  inject,
-  input,
-  signal,
+  afterNextRender,
+  inject
 } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
-import { IShelterInterface } from '../../dto/shelter.dto';
+import { RouterLink } from '@angular/router';
+import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { CapitalPipe } from '../../../../core/pipes/capital.pipe';
 import { AuthService } from '../../../../core/services/auth.service';
 import { ShelterService } from '../../../../core/services/shelter.service';
-import { ToastService } from '../../../../core/services/toast.service';
-import { NgbTooltip } from '@ng-bootstrap/ng-bootstrap';
+import { IShelterInterface } from '../../dto/shelter.dto';
 
 @Component({
   selector: 'app-abrigo-card',
   standalone: true,
-  imports: [CommonModule, RouterLink, NgbTooltip],
+  imports: [CommonModule, RouterLink, NgbTooltip, CapitalPipe],
   templateUrl: './abrigo-card.component.html',
   styleUrl: './abrigo-card.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class AbrigoCardComponent {
+export class AbrigoCardComponent{
   #shelterService = inject(ShelterService);
-  @Output() deleteShelter: EventEmitter<number> = new EventEmitter();
-  shelter = input<IShelterInterface>();
-  limit = signal(2);
-  #router = inject(Router);
-  user = inject(AuthService).user;
-  canEdit = computed(
-    () => this.user().role == 'admin' || this.user().role == 'volunteer'
-  );
+  #authService = inject(AuthService);
+  @Input() shelter!: IShelterInterface;
+  @Output() deleteShelter = new EventEmitter<number>();
+  canEdit = this.#authService.canEdit;
+  needs = 4
+constructor(){
+  afterNextRender(()=> {
+    if(window.innerWidth <= 768){
+      this.needs = 3
+    }
+  })
+}
+
+  updateNeedsAmount(){
+    if(this.needs <=4){
+      this.needs = this.shelter.needs.length
+    }
+    else{
+      window.innerWidth <= 768 ? this.needs = 3 : this.needs = 4
+    }
+  }
 
   formatPhone(phone: string) {
     return '+55' + phone.replace(/\D/g, '');
-  }
-  navigateToShelter(id: number) {
-    this.#router.navigate(['abrigo', id]);
-  }
-
-  changeLimit() {
-    const newLimit = this.limit() === 2 ? this.shelter()!.needs.length : 2;
-    this.limit.set(newLimit);
-  }
-
-  capacityExists(capacity: number | null) {
-    if (capacity === null) return false;
-    return typeof capacity === 'number';
   }
 }

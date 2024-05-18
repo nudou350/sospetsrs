@@ -1,44 +1,55 @@
-<div *ngIf="!!shelter()" class="card p-3 shadow pointer">
+<div *ngIf="!!shelter" class="card p-3 shadow">
     <div class="card-body">
-        <div *ngIf="canEdit()" class="d-flex justify-content-end">
-            <img ngbTooltip="Apagar abrigo" class="img-fluid" src="../../../../../assets/icons/bin.svg" (click)="$event.stopPropagation();deleteShelter.emit(shelter()!.id!)" alt="">
-        </div>
-        <div class="d-flex flex-column gap-1">
-            <span class="fw-bold">{{shelter()?.name}}</span>
-                <div class="d-flex gap-2 align-items-center address-height">
-                    <span class="fw-light text-dark-1 mt-1 ">{{shelter()?.address ? shelter()?.address : 'Entre em contato'}}</span>
-                </div>
-            <div class="d-flex gap-2 mt-1">
-                <p *ngIf="capacityExists(this.shelter()!.capacity); else noInfo"
-                [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-error-1 p-1 rounded px-2 fw-medium'"
-                style="color: #3B3F5C;">
-                {{shelter()!.capacity - shelter()!.occupation}} Vagas disponíveis
-                </p>
-                <ng-template #noInfo>
-                    <!-- <p
-                    [class]="shelter()!.capacity - shelter()!.occupation > 0 ?  'text-bg-success-1 p-1 rounded px-2 fw-medium' : 'text-bg-error-1 p-1 rounded px-2 fw-medium'"
-                    style="color: #3B3F5C;">
-                    Informação indisponível
-                    </p> -->
-                    <p class="p-1">‎ </p>
-                </ng-template>
-            </div>
-            <div class="d-flex gap-2 mt-4 flex-wrap align-items-center">
-                @for (need of shelter()?.needs| slice: 0:limit(); track $index) {
-                    <span *ngIf="need.length>0" class="p-1 px-2 rounded text-text-secondary bg-background-secondary fw-medium">{{need|titlecase}}</span>
-                }
-                <ng-container *ngIf="shelter()?.needs!.length>3">
-                    <span class="text-primary fw-bold" (click)="$event.stopPropagation();changeLimit()">{{limit()==2 ? 'Ver mais' : 'Ver menos'}}</span>
+        <div class="d-flex justify-content-start align-items-center gap-4 w-100">
+            <h3 class="m-0">{{shelter.name}}</h3>
+            <div class="d-md-block d-none">
+                <!-- case no occupation provided -->
+                <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null">
+                    <p class="badge bg-badge-success text-badge-text  p-2">Vagas: Não informado</p>
                 </ng-container>
-                @if(shelter()?.other_needs!.length>0){
-                    <span class="p-1 px-2 bg-background-secondary rounded text-text-secondary fw-medium">{{shelter()?.other_needs}}</span>
-                }
-                <ng-container  *ngIf="shelter()!.needs.length==0 && shelter()!.other_needs.length==0">
-                <p class="p-1">‎</p></ng-container>
+                <!-- case all info -->
+                <ng-container *ngIf="shelter.capacity!== null && shelter.capacity >0 &&  shelter.occupation!== null">
+                    <p class="badge bg-badge-success text-badge-text  p-2">{{shelter.capacity - shelter.occupation}}
+                        Vagas disponíveis</p>
+                </ng-container>
             </div>
-            <div class="d-flex flex-column align-items-center mt-3 gap-2">
-                <a (click)="$event.stopPropagation()" [routerLink]="'/editar-abrigo/'+shelter()?.id" class="btn btn-primary w-mobile w-100 bottom-mobile fw-medium">{{canEdit() ? 'Editar abrigo' : 'Ver abrigo'}}</a>
-                <a *ngIf="shelter()!.phone!=='0'" (click)="$event.stopPropagation()" [href]="'https://wa.me/'+formatPhone(shelter()!.phone)" target="_blank" class="btn btn-outline-primary w-mobile w-100 bottom-mobile fw-medium">Entrar em contato</a>
+            <div *ngIf="canEdit()" class="flex-grow-1">
+                <div (click)="deleteShelter.emit(shelter.id)"
+                    class="d-flex flex-md-row flex-column align-items-center justify-content-end gap-1">
+                    <img class="img-fluid pointer" src="../../../../../assets/icons/bin.svg" alt="delete icon">
+                    <p class="text-primary fw-medium pointer">Excluir</p>
+                </div>
+            </div>
+        </div>
+        <div class="d-md-none d-block mt-2">
+            <!-- case no occupation provided -->
+            <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null">
+                <p class="badge bg-badge-success text-badge-text p-2">Vagas: Não informado</p>
+            </ng-container>
+            <!-- case all info -->
+            <ng-container *ngIf="shelter.capacity!== null && shelter.capacity >0 &&  shelter.occupation!== null">
+                <p class="badge bg-badge-success text-badge-text p-2">{{shelter.capacity - shelter.occupation}} Vagas
+                    disponíveis</p>
+            </ng-container>
+        </div>
+        <p class="mt-2">{{shelter.address}}</p>
+        <p class="mt-3 text-badge-text fw-medium">Necessidades:</p>
+        <div class="d-flex flex-md-row flex-column justify-content-between align-items-md-center">
+            <div class="d-flex gap-2 flex-wrap mt-md-0 mt-2">
+                @for (need of shelter.needs | slice: 0:(needs < shelter.needs.length ? needs : shelter.needs.length);
+                    track need) { <p class="badge bg-badge-warning text-badge-text p-2">{{need|appCapital}}</p>
+                    }
+                    <p *ngIf="shelter.other_needs.length>0" class="badge bg-badge-warning text-badge-text p-2">{{shelter.other_needs|appCapital}}
+                    <p (click)="updateNeedsAmount()" *ngIf="shelter.needs.length>3"
+                        class="text-primary fw-medium pointer">{{this.needs < shelter.needs.length ? 'Ver mais'
+                            : 'Ver menos' }}</p>
+            </div>
+
+            <div class="d-flex gap-2 mt-md-0 mt-3">
+                <a *ngIf="shelter.phone.length>3" [href]="'https://wa.me/'+formatPhone(shelter.phone)" target="_blank"
+                    class="btn btn-outline-primary">Contato</a>
+                <button routerLink="/editar-abrigo/{{shelter.id}}" class="btn btn-primary nowrap">{{canEdit() ?
+                    'Editar': 'Ver mais'}}</button>
             </div>
         </div>
     </div>
