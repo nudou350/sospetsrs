@@ -1,3 +1,15 @@
 :host {
   display: block;
 }
+
+#other_needs {
+  border: none;
+  border-bottom: #dee2e6 solid 1px;
+  width: 250px;
+}
+
+@media screen and (min-width: 1280px){
+  #other_needs {
+    width: 280px;
+  }
+}

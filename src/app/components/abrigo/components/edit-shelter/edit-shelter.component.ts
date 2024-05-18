@@ -57,6 +57,8 @@ export class EditShelterComponent implements OnInit {
   @ViewChild('errorTpl') errorTpl!: TemplateRef<any>;
   @ViewChild('capacityTpl') capacityTpl!: TemplateRef<any>;
 
+  isOtherNeedsSelected: boolean = false;
+
 constructor(){
   effect(()=> {
     return (this.user().role!== 'admin' && this.user().role!=='volunteer') ?  this.shelterForm.disable(): this.shelterForm.enable()
@@ -75,6 +77,7 @@ constructor(){
     //if we access from the edit page directly, we need to download the data
     else {
       this.#shelterService.getShelterById(this.shelterId).subscribe(shelter => {
+        console.log(shelter)
         this.shelterForm.patchValue(shelter);
         this.shelterForm.controls.needs.setValue(shelter.needs);
         this.selectedNeeds.set(shelter.needs);
@@ -140,5 +143,13 @@ constructor(){
 
   formatPhone(phone: string) {
     return phone.replace(/\D/g, '');
+  }
+
+  updateOtherNeeds(event: Event){
+    this.isOtherNeedsSelected = (event.target as HTMLInputElement).checked
+
+    if(!this.isOtherNeedsSelected && this.shelterForm.controls.other_needs.getRawValue().length > 0){
+      this.shelterForm.controls.other_needs.setValue('');
+    }
   }
 }
