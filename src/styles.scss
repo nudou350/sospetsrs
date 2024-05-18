@@ -1,10 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import '../src/assets/bootstrap/theme.scss';
-@import '../src/assets/bootstrap/components.scss';
-@import '../src/assets/bootstrap/responsive.scss';
-@import '../src/assets/bootstrap/utils.scss';
-@import '../src/assets/bootstrap/reset.scss';
+@import "../src/assets/bootstrap/theme.scss";
+@import "../src/assets/bootstrap/components.scss";
+@import "../src/assets/bootstrap/responsive.scss";
+@import "../src/assets/bootstrap/utils.scss";
+@import "../src/assets/bootstrap/reset.scss";
 @import url("http://fonts.googleapis.com/css?family=Poppins:400,500,700");
-@import 'bootstrap/scss/bootstrap';
+@import "bootstrap/scss/bootstrap";
+@import "bootstrap-icons/font/bootstrap-icons.css";
