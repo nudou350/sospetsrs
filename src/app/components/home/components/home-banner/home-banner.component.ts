@@ -12,5 +12,5 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeBannerComponent {
-  rescueMapUrl = "https://earth.google.com/earth/d/1puzq1GWwlCdW_ulmV2pv47bHGqD7AUyx?usp=sharing"
+  rescueMapUrl = "https://www.google.com/maps/d/u/3/edit?mid=1kjb746-UAeM6jELlcQ6g2o7MDHKVj4o&usp=sharing"
 }
