@@ -1,5 +1,5 @@
-<div *ngIf="!!shelter" class="card p-3 shadow">
-    <div class="card-body">
+<div *ngIf="!!shelter" class="card p-3 shadow ">
+    <div class="card-body pointer"  (click)="$event.stopImmediatePropagation()" routerLink="/editar-abrigo/{{shelter.id}}">
         <div class="d-flex justify-content-start align-items-center gap-4 w-100">
             <h3 class="m-0">{{shelter.name}}</h3>
             <div class="d-md-block d-none">
@@ -53,9 +53,9 @@
             </div>
 
             <div class="d-flex gap-2 mt-md-0 mt-3">
-                <a *ngIf="shelter.phone.length>6" [href]="'https://wa.me/'+formatPhone(shelter.phone)" target="_blank"
+                <a (click)="$event.stopImmediatePropagation()" *ngIf="shelter.phone.length>6" [href]="'https://wa.me/'+formatPhone(shelter.phone)" target="_blank"
                     class="btn btn-outline-primary">Contato</a>
-                <button routerLink="/editar-abrigo/{{shelter.id}}" class="btn btn-primary nowrap">{{canEdit() ?
+                <button (click)="$event.stopImmediatePropagation()" routerLink="/editar-abrigo/{{shelter.id}}" class="btn btn-primary nowrap">{{canEdit() ?
                     'Editar': 'Ver mais'}}</button>
             </div>
         </div>
