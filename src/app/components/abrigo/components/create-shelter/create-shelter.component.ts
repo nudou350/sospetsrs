@@ -66,7 +66,6 @@ export class CreateShelterComponent {
       })
     );
   updateList(item: string){
-    console.log(item)
     if(this.selectedNeeds().includes(item)){
       const newList = this.selectedNeeds().filter(need => need !== item)
       this.selectedNeeds.set(newList)

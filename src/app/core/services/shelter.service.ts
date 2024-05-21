@@ -24,14 +24,9 @@ export class ShelterService {
       .pipe(
         map((res) => res.data),
         //order by needs array
-        tap((shelters) => {
-          //sort by the shelters that have the most available spots and put the ones with null occupation at the end
-          shelters.sort((a, b) => {
-            if (a.occupation === null) return 1;
-            if (b.occupation === null) return -1;
-            return (b.capacity - b.occupation) - (a.capacity - a.occupation);
-          })
-        }),
+        tap((shelters) =>
+          shelters.sort((a, b) => b.needs.length - a.needs.length)
+        ),
         tap((shelters) => this.#shelters.set(shelters))
       );
   }
@@ -82,12 +77,10 @@ export class ShelterService {
   deleteShelter(id: number) {
     return this.#http.delete(`${environment.apiUrl}/shelters/${id}`).pipe(
       tap(() => {
-        console.log(this.#shelters());
         const shelters = this.#shelters();
         const index = shelters.findIndex((s) => s.id === id);
         shelters.splice(index, 1);
         this.#shelters.set(shelters);
-        console.log(this.#shelters());
       })
     );
   }

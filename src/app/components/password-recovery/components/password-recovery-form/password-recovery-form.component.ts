@@ -18,7 +18,6 @@ export class PasswordRecoveryFormComponent {
 
   onRecovery(form: NgForm) {
     if (form.valid) {
-      console.log('Password recovery data:', form.value);
     }
   }
 }

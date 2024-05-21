@@ -50,7 +50,6 @@ export class AuthService {
   
       return payload.email;
     } catch (err) {
-      console.log('Invalid token', err);
       return null;
     }
   }
@@ -62,7 +61,6 @@ export class AuthService {
   
       return payload.exp;
     } catch (err) {
-      console.log('Invalid token', err);
       return null;
     }
   }

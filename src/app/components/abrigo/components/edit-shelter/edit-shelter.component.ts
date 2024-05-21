@@ -77,7 +77,6 @@ constructor(){
     //if we access from the edit page directly, we need to download the data
     else {
       this.#shelterService.getShelterById(this.shelterId).subscribe(shelter => {
-        console.log(shelter)
         this.shelterForm.patchValue(shelter);
         this.shelterForm.controls.needs.setValue(shelter.needs);
         this.selectedNeeds.set(shelter.needs);
