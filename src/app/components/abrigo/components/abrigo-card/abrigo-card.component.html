@@ -11,9 +11,12 @@
                     <p class="badge bg-badge-success text-badge-text  p-2">Vagas: Não informado</p>
                 </ng-container>
                 <!-- case all info -->
-                <ng-container *ngIf="shelter.capacity!== null && shelter.capacity >0 &&  shelter.occupation!== null">
+                <ng-container *ngIf="shelter.capacity!== null && shelter.capacity >0 &&  shelter.occupation!== null && shelter.capacity - shelter.occupation>0">
                     <p class="badge bg-badge-success text-badge-text  p-2">{{shelter.capacity - shelter.occupation}}
                         Vagas disponíveis</p>
+                </ng-container>
+                <ng-container *ngIf="shelter.occupation==shelter.capacity && shelter.capacity!=null && shelter.occupation!= null">
+                    <p class="badge bg-shelter-full text-badge-text  p-2">Lotado</p>
                 </ng-container>
             </div>
             <div *ngIf="canEdit()" class="flex-grow-1">
