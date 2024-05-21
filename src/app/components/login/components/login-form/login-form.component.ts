@@ -44,11 +44,9 @@ export class LoginFormComponent {
       this.authService.login(this.loginForm.value).subscribe({
         next: (response) => {
           this.#toastService.showSuccess('Login bem sucedido!', 3000); 
-          console.log('Login successful', response);
         },
         error: (error) => {
           this.#toastService.showError('Erro ao logar! Verifique seu email ou senha', 3000);
-          console.error('Login failed', error);
         },
       });
     }
@@ -65,10 +63,8 @@ export class LoginFormComponent {
       .requestResetPassword({ email: this.loginForm.value['email'] })
       .subscribe({
         next: (response) => {
-          console.log('Request reset password successful', response);
         },
         error: (error) => {
-          console.error('Request failed', error);
         },
       });
   }

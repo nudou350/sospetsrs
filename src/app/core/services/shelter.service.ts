@@ -77,12 +77,10 @@ export class ShelterService {
   deleteShelter(id: number) {
     return this.#http.delete(`${environment.apiUrl}/shelters/${id}`).pipe(
       tap(() => {
-        console.log(this.#shelters());
         const shelters = this.#shelters();
         const index = shelters.findIndex((s) => s.id === id);
         shelters.splice(index, 1);
         this.#shelters.set(shelters);
-        console.log(this.#shelters());
       })
     );
   }

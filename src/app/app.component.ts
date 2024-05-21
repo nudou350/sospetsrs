@@ -1,4 +1,4 @@
-import { Component, TemplateRef, inject } from '@angular/core';
+import { Component, TemplateRef, afterNextRender, inject } from '@angular/core';
 import { NavigationEnd, Router, RouterOutlet } from '@angular/router';
 import { NavbarComponent } from './shared/navbar/navbar.component';
 import { FooterComponent } from './shared/footer/footer.component';
@@ -21,16 +21,18 @@ export class AppComponent {
   #gtm = inject(GoogleTagManagerService)
   #router = inject(Router)
   constructor(){
-    this.#router.events.forEach(item => {
-      if (item instanceof NavigationEnd) {
-          const gtmTag = {
-              event: 'page',
-              pageName: item.url
-          };
-
-          this.#gtm.pushTag(gtmTag);
-      }
-  });
+    afterNextRender(()=> {
+      this.#router.events.forEach(item => {
+        if (item instanceof NavigationEnd) {
+            const gtmTag = {
+                event: 'page',
+                pageName: item.url
+            };
+  
+            this.#gtm.pushTag(gtmTag);
+        }
+    });
+    })
   }
 
 }
