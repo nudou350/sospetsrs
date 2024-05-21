@@ -47,7 +47,7 @@
                     track need) { <p class="badge bg-badge-warning text-badge-text p-2">{{need|appCapital}}</p>
                     }
                     <p *ngIf="shelter.other_needs.length>0" class="badge bg-badge-warning text-badge-text p-2">{{shelter.other_needs|appCapital}}
-                    <p (click)="$event.stopImmediatePropagation();updateNeedsAmount()" *ngIf="shelter.needs.length>3"
+                    <p (click)="$event.stopImmediatePropagation();updateNeedsAmount()" *ngIf="shelter.needs.length>4"
                         class="text-primary fw-medium pointer">{{this.needs < shelter.needs.length ? 'Ver mais'
                             : 'Ver menos' }}</p>
             </div>
