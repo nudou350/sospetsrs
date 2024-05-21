@@ -33,7 +33,7 @@ import { IShelterInterface } from './dto/shelter.dto';
 })
 export class AbrigoComponent {
   page = 1;
-  pageSize = 8;
+  pageSize = 12;
   #shelterService = inject(ShelterService);
   #cdr = inject(ChangeDetectorRef);
   #toastService = inject(ToastService);
@@ -50,11 +50,6 @@ export class AbrigoComponent {
       this.searchFilter().filter((shelter: IShelterInterface) => shelter.capacity > shelter.occupation && shelter.occupation != null)
 
   })
-  constructor(){
-    afterNextRender(()=> {
-      window.innerWidth < 768 ? this.pageSize = 4 : this.pageSize = 8
-    })
-  }
 
   scrollTop() {
     const element = document.getElementById('topView');
