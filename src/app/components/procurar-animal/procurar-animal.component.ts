@@ -44,5 +44,11 @@ export class ProcurarAnimalComponent {
       url: 'https://www.petsos.com.br/',
       isExternal: true
     },
+    {
+      text: "Ache seu Pet",
+      imgUrl: 'acheseupet.png',
+      url: 'http://www.acheseupetrs.com.br/',
+      isExternal: true
+    },
   ]
 }
