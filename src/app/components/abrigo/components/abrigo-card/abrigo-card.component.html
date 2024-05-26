@@ -7,7 +7,7 @@
                 <!-- <ng-container *ngIf="shelter.capacity!= null">
                     <p class="badge bg-badge-success text-badge-text me-2 p-2">Capacidade: {{shelter.capacity}}</p>
                 </ng-container> -->
-                <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null">
+                <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null || shelter.occupation > shelter.capacity">
                     <p class="badge bg-badge-success text-badge-text  p-2">Vagas: Não informado</p>
                 </ng-container>
                 <!-- case all info -->
@@ -32,7 +32,7 @@
                 <p class="badge bg-badge-success text-badge-text me-2 p-2">Capacidade: {{shelter.capacity}}</p>
             </ng-container> -->
             <!-- case no occupation provided -->
-            <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null">
+            <ng-container *ngIf="shelter.capacity== null || shelter.occupation===null || shelter.occupation > shelter.capacity">
                 <p class="badge bg-badge-success text-badge-text p-2">Vagas: Não informado</p>
             </ng-container>
             

@@ -81,11 +81,6 @@ export class CreateShelterComponent {
       this.#toastService.showError("Cidade não encontrada. Verifique a localização!");
       return
     }
-        //check if occupation is bigger than capacity
-        if (this.form.controls.occupation.value > this.form.controls.capacity.value) {
-          this.#toastService.showError("O número de Pets não pode ser maior que a capacidade do abrigo!"); 
-          return;
-        }
     if(!this.form.controls.address.value) this.form.controls.address.setValue('Entre em contato')
       return confirm('Deseja realmente cadastrar esse abrigo?') &&
       this.#shelterService.createShelter(this.form.getRawValue()).subscribe({
