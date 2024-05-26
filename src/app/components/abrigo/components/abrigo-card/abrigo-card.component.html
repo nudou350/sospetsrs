@@ -20,10 +20,10 @@
                 </ng-container>
             </div>
             <div *ngIf="canEdit()" class="flex-grow-1">
-                <div (click)="deleteShelter.emit(shelter.id)"
+                <div 
                     class="d-flex flex-md-row flex-column align-items-md-center align-items-end justify-content-end gap-1">
-                    <img class="img-fluid pointer" src="../../../../../assets/icons/bin.svg" alt="delete icon">
-                    <p class="text-primary fw-medium pointer">Excluir</p>
+                    <img (click)="$event.stopPropagation(); deleteShelter.emit(shelter.id)" class="img-fluid pointer" src="../../../../../assets/icons/bin.svg" alt="delete icon">
+                    <p (click)="$event.stopPropagation(); deleteShelter.emit(shelter.id)" class="text-primary fw-medium pointer">Excluir</p>
                 </div>
             </div>
         </div>
