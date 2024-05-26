@@ -76,13 +76,10 @@ export class AbrigoFiltersComponent implements OnInit {
               if(AbrigoFiltersComponent.removeAccents(shelter.location).toLowerCase().includes(sanitizedTerm)){
                 returnQuery.includes(AbrigoFiltersComponent.removeAccents(shelter.location)) ? null : returnQuery.push(shelter.location)
               }
-              else{
-                returnQuery.push(shelter.name)
-              }
             }
           });
          this.searchFilter.emit(filteredResult)
-          return returnQuery
+          return []
         }
       })
     );
