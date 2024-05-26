@@ -118,12 +118,6 @@ constructor(){
       this.#toastService.showError("Cidade não encontrada. Verifique a localização!");
       return
     }
-
-    //check if occupation is bigger than capacity
-    if (this.shelterForm.controls.occupation.value > this.shelterForm.controls.capacity.value) {
-      this.#toastService.showError("O número de Pets não pode ser maior que a capacidade do abrigo!"); 
-      return;
-    }
     const shelterId = parseInt(this.#activatedRoute.snapshot.params['id']);
     let shelter = this.shelterForm.getRawValue();
     if(!shelter.address) shelter.address = 'Entre em contato';
